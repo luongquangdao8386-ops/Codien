@@ -2,7 +2,7 @@
  * Bản mới chỉ dùng khi người dùng bấm "Cập nhật · 更新" (trang gửi SKIP_WAITING).
  * BAN đổi mỗi lần index.html đổi (build gắn phiên bản + mã băm), nên iPhone luôn nhận ra bản mới.
  */
-var BAN = '0.4.0-ad5a162fd5';
+var BAN = '0.4.1-a1e61b16c4';
 var CACHE = 'codien-app-' + BAN;
 var THU_VIEN = 'codien-thuvien-1';   // thư viện (tên tệp có phiên bản), giữ qua các bản app
 var ANH = 'codien-anh-1';            // ảnh Drive đã xem (thumbnail), tối đa ANH_TOI_DA tấm

@@ -581,6 +581,49 @@ body.co-thanh-duoi .thanh-nut-duoi { bottom: calc(env(safe-area-inset-bottom, 0p
 button.dong.dang { background: var(--chinh-nhat); }
 body:has(.thanh-nut-duoi) #thong-bao { bottom: calc(env(safe-area-inset-bottom, 0px) + 170px); }
 
+/* Phiên 4b: người kiểm tra, chọn nhiều máy, thông số khác, linh kiện */
+.hang-dem { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 36px; }
+.hang-dem .muc-ghi { margin: 0 4px; }
+.nut-chu.nho { min-height: 36px; font-size: 14px; display: inline-flex; align-items: center; gap: 4px; }
+.nut-chu.nho .zh { display: inline; } .nut-chu.nho .zh::before { content: "· "; }
+.nut-chu .ic-nho { width: 16px; height: 16px; }
+.thanh-chon { display: flex; align-items: center; gap: 4px; margin-bottom: 8px; padding: 4px 6px 4px 12px; border-radius: 12px; background: var(--mat); box-shadow: var(--bong-noi); }
+.thanh-chon > .so { flex: 1; font-weight: 650; font-size: 14px; white-space: nowrap; }
+.thanh-chon > .so .zh { font-size: 11px; }
+.thanh-chon .nut-chu.nho { white-space: nowrap; }
+/* Nút trong hộp thoại: tiếng Trung xuống dòng dưới (nhãn dài không bị gãy chữ) */
+.hop-thoai .hang-nut > .nut { flex-direction: column; gap: 1px; line-height: 1.2; }
+.hop-thoai .hang-nut > .nut .zh { display: block; font-size: .8em; }
+.hop-thoai .hang-nut > .nut .zh::before { content: none; }
+.chon-nguoi { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip-chon { position: relative; display: inline-flex; align-items: center; min-height: 40px; padding: 6px 14px; border-radius: 20px; background: var(--mat); box-shadow: inset 0 0 0 1px var(--vien-dam); font-size: 15px; font-weight: 550; cursor: pointer; line-height: 1.2; }
+.chip-chon > span { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.chip-chon .zh { display: inline; font-size: .86em; } .chip-chon .zh::before { content: "· "; }
+.chip-chon input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.chip-chon:has(input:checked) { background: var(--chinh); color: var(--chinh-chu); box-shadow: none; }
+.chip-chon:has(input:focus-visible) { outline: 2px solid var(--chinh); outline-offset: 2px; }
+.chip-chon.mo { opacity: .6; }
+.chip-chon[hidden] { display: none; }
+.o-nhom { margin: 10px 0 0; padding-top: 12px; border-top: 1px solid var(--vien); font-size: 13px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; color: var(--chinh); display: flex; align-items: center; gap: 6px; }
+.o-nhom .zh { display: inline; text-transform: none; font-weight: 500; letter-spacing: 0; } .o-nhom .zh::before { content: "· "; }
+.ds-ts { display: grid; gap: 10px; }
+.ds-ts:empty { display: none; }
+.ts-sua { display: grid; gap: 6px; padding: 10px; border-radius: 12px; background: var(--mat-2); box-shadow: inset 0 0 0 1px var(--vien); }
+.ts-hang { display: grid; grid-template-columns: minmax(0, 1fr) 96px 44px; gap: 6px; align-items: center; }
+.ts-sua .o-nhap { min-height: 44px; padding: 8px 10px; }
+.dong-lk { align-items: flex-start; padding-right: 8px; }
+.lk-anh { flex: none; width: 48px; height: 48px; border: 0; padding: 0; border-radius: 10px; overflow: hidden; background: var(--mat-2); }
+.lk-anh img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.lk-than { display: block; width: 100%; padding: 0; border: 0; background: none; color: inherit; text-align: left; font: inherit; }
+.ma-lk { display: block; font: 700 19px/1.3 var(--f-so); letter-spacing: .01em; color: var(--chu); overflow-wrap: anywhere; margin: 1px 0; }
+.dong-lk .nut-dau.vien { flex: none; margin-top: 4px; }
+.dong-lk-nhom > .ic-nho { color: var(--mo); align-self: center; }
+.dong-lk-nhom.mo-ra { background: var(--chinh-nhat); }
+.lk-cac-may { background: var(--mat-2); border-top: 1px solid var(--vien); }
+.lk-cac-may .dong { padding-left: 28px; min-height: 52px; }
+.lk-cac-may + .dong { border-top: 1px solid var(--vien); }
+a.hh { text-decoration: none; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
@@ -640,7 +683,7 @@ var TX = {
   'cap.1': ['Quản trị', '管理员'], 'cap.2': ['Quản lý / Kỹ sư', '主管 / 工程师'], 'cap.3': ['Kỹ thuật viên', '技术员'], 'cap.4': ['Người báo hỏng', '报修人'],
   'cap.1.ghi': ['Mọi việc; người dùng, PIN, báo tin, sao lưu', '全部权限；用户、PIN、通知、备份'],
   'cap.2.ghi': ['Giao việc, nghiệm thu, hồ sơ máy, kế hoạch, danh mục, báo cáo', '派工、验收、设备档案、计划、类目、报表'],
-  'cap.3.ghi': ['Nhận và làm phiếu, bảo dưỡng, ghi số điện', '接单维修、保养、抄电表'],
+  'cap.3.ghi': ['Nhận và làm phiếu, bảo dưỡng, ghi số điện, linh kiện', '接单维修、保养、抄电表、备件'],
   'cap.4.ghi': ['Báo hỏng, xem trạng thái máy và phiếu', '报修、查看设备和工单状态'],
 
   /* Lỗi (mã máy chủ + mã giao diện) */
@@ -900,7 +943,7 @@ var TX = {
   'nx.chonTep': ['Chọn file Excel', '选择Excel文件'], 'nx.dangDoc': ['Đang đọc file…', '正在读取文件…'],
   'nx.tongDong': ['{n} dòng', '{n}行'], 'nx.moi': ['{n} máy mới', '{n}台新设备'], 'nx.daCo': ['{n} máy đã có (trùng mã)', '{n}台已存在（编码相同）'],
   'nx.loiDong': ['{n} dòng lỗi', '{n}行有误'],
-  'nx.capNhat': ['Cập nhật máy đã có', '更新已有设备'], 'nx.capNhatGhi': ['Ghi đè các ô có dữ liệu; ô trống giữ nguyên', '覆盖有数据的单元格；空白单元格保持不变'],
+  'nx.capNhat': ['Cập nhật máy, linh kiện đã có', '更新已有设备、备件'], 'nx.capNhatGhi': ['Ghi đè các ô có dữ liệu; ô trống giữ nguyên', '覆盖有数据的单元格；空白单元格保持不变'],
   'nx.boDongLoi': ['Dòng lỗi sẽ bị bỏ qua; sửa trong file rồi nhập lại sau.', '有误的行将被跳过；可在文件中修改后再导入。'],
   'nx.nhap': ['Nhập {n} máy', '导入{n}台'], 'nx.dangNhap': ['Đang nhập {i}/{n}…', '正在导入 {i}/{n}…'],
   'nx.xong': ['Đã nhập: {them} mới, {sua} cập nhật, {boQua} bỏ qua', '导入完成：新增{them}，更新{sua}，跳过{boQua}'],
@@ -924,7 +967,7 @@ var TX = {
   'nx.hdTrangThai': ['Đang chạy, Đang dừng, Đang sửa, Dự phòng, Thanh lý; để trống là Đang chạy', '运行中、停机、维修中、备用、已报废；留空为运行中'],
   'nx.hdNguoi': ['Họ tên đúng như trong app (cấp Kỹ thuật viên trở lên)', '与应用中的姓名一致（技术员及以上）'],
   'qt.inTemGhi': ['Tem QR cho máy, xuất PDF A4 để in', '设备二维码标签，生成A4 PDF打印'],
-  'qt.nhapExcelGhi': ['Thêm, cập nhật nhiều máy từ file Excel', '从Excel文件批量添加、更新设备'],
+  'qt.nhapExcelGhi': ['Thêm, cập nhật nhiều máy và linh kiện từ file Excel', '从Excel文件批量添加、更新设备和备件'],
   'hd.themThietBi': ['Thêm máy', '添加设备'], 'hd.suaThietBi': ['Sửa máy', '修改设备'], 'hd.xoaThietBi': ['Xoá máy', '删除设备'],
   'hd.doiTrangThaiTB': ['Đổi trạng thái máy', '更改设备状态'], 'hd.themAnh': ['Thêm ảnh', '添加照片'], 'hd.boAnh': ['Bỏ ảnh', '删除照片'],
   'hd.nhapThietBiExcel': ['Nhập máy từ Excel', '从Excel导入设备'],
@@ -955,7 +998,7 @@ var TX = {
   'bdg.ngayChon': ['Ngày {ngay}', '日期 {ngay}'], 'bdg.ngayTrong': ['Không có việc ngày này', '当天无任务'],
   'bdg.namTrong': ['Không có kế hoạch trong năm này', '本年度无保养计划'],
   'bdg.namGhi': ['Bấm một ô để xem lịch tháng đó; số trong ô là số lần.', '点击格子查看当月日历；格内数字为次数。'],
-  'bdg.moiNguoi': ['Mọi người', '全部'], 'bdg.theoMayNgan': ['Theo máy', '同设备负责人'],
+  'bdg.moiNguoi': ['Mọi người', '全部'], 'bdg.theoMayNgan': ['Theo người kiểm tra của máy', '按设备点检人'],
   'bdg.daQuetNgan': ['Đã quét tem', '已扫码'], 'bdg.khongQuet': ['Không quét tem', '未扫码'],
   'bdg.chuaLam': ['Chưa có lần bảo dưỡng nào', '暂无保养记录'], 'bdg.daLamGhi': ['Hiện 13 tháng gần nhất.', '显示最近13个月。'],
   'bdg.khongThayKh': ['Không tìm thấy kế hoạch', '未找到计划'], 'bdg.lanCuoiNgan': ['lần cuối {ngay}', '上次{ngay}'],
@@ -990,7 +1033,7 @@ var TX = {
   'bdg.hanTiep': ['Hạn lần tới', '下次到期'], 'bdg.lanDau': ['Hạn lần đầu', '首次到期'],
   'bdg.lanCuoi': ['Lần làm cuối', '上次保养'], 'bdg.chuaLamLanNao': ['Chưa làm lần nào', '尚未保养'],
   'bdg.nhacTruoc': ['Nhắc trước', '提前提醒'], 'bdg.nhacTruocNgay': ['Nhắc trước (ngày)', '提前提醒（天）'], 'bdg.soNgay': ['{n} ngày', '{n}天'],
-  'bdg.phuTrach': ['Người phụ trách', '负责人'], 'bdg.theoMay': ['Theo người phụ trách máy', '同设备负责人'],
+  'bdg.phuTrach': ['Người phụ trách', '负责人'], 'bdg.theoMay': ['Theo người kiểm tra của máy', '按设备点检人'],
   'bdg.batBuoc': ['Bắt buộc', '必须'], 'bdg.khongBatBuocNgan': ['Không bắt buộc', '非必须'], 'bdg.trangThai': ['Trạng thái', '状态'],
   'bdg.kieu': ['Kiểu hạng mục', '项目类型'], 'bdg.kieuSo': ['Số đo', '测量值'], 'bdg.kieuDat': ['Đạt / Lỗi', '合格 / 异常'],
   'bdg.lichSu': ['Lịch sử bảo dưỡng', '保养履历'], 'bdg.xemThemLs': ['Xem thêm trong từng kế hoạch.', '更多记录请在各计划中查看。'],
@@ -1061,6 +1104,82 @@ var TX = {
   'bt.guiTinSangHoi': ['Gửi tin sáng ngay bây giờ?', '现在发送早间提醒？'],
   'bt.guiTinSangGhi': ['Tin gửi vào nhóm Telegram và danh sách email đang bật.', '消息将发送到已开启的Telegram群组和邮箱列表。'],
 
+  /* Phiên 4b: thông số máy, người kiểm tra, linh kiện */
+  'man.linhkien': ['Tra linh kiện', '备件查询'],
+  'viec.giaoKiemTra': ['Giao người kiểm tra', '分配点检人'], 'viec.luuLinhKien': ['Lưu linh kiện', '保存备件'],
+  'viec.xoaLinhKien': ['Xoá linh kiện', '删除备件'], 'viec.nhapLinhKienExcel': ['Nhập linh kiện', '导入备件'],
+  'tb.nguoiKiemTra': ['Người kiểm tra', '点检人'], 'tb.namSX': ['Năm sản xuất', '出厂年份'], 'tb.nhaCungCap': ['Nhà cung cấp', '供应商'],
+  'tb.baoHanh': ['Bảo hành', '保修'], 'tb.maTaiSan': ['Mã tài sản', '资产编号'],
+  'tb.congSuat': ['Công suất (kW)', '功率 (kW)'], 'tb.dienAp': ['Điện áp (V)', '电压 (V)'], 'tb.dongDien': ['Dòng điện định mức (A)', '额定电流 (A)'],
+  'tb.congSuatNgan': ['Công suất kW', '功率 kW'], 'tb.dienApNgan': ['Điện áp V', '电压 V'], 'tb.dongDienNgan': ['Dòng A', '电流 A'],
+  'tb.dienApGoiY': ['VD: 380', '例：380'],
+  'tb.thongSoMuc': ['Thông số', '参数'], 'tb.baoHanhDen': ['Bảo hành đến {ngay}', '保修至{ngay}'], 'tb.hetBaoHanh': ['Hết bảo hành', '已过保修期'],
+  'tb.hetBaoHanhNgay': ['Hết bảo hành ngày', '保修到期日'],
+  'tb.nhomDien': ['Điện', '电气'], 'tb.nhomMua': ['Mua sắm', '采购'], 'tb.nhomKhac': ['Tài liệu, ghi chú', '资料、备注'],
+  'tb.thongSoKhac': ['Thông số khác', '其他参数'], 'tb.themTs': ['Thêm dòng thông số', '添加参数'],
+  'tb.tsGhi': ['Ví dụ: Lưu lượng · 13 · m³/phút. Thiếu tên một tiếng thì máy chủ tự dịch.', '例如：流量 · 13 · m³/分钟。名称缺一种语言时服务器自动翻译。'],
+  'tb.tsTenVi': ['Tên tiếng Việt', '越南语名称'], 'tb.tsTenZh': ['Tên tiếng Trung', '中文名称'], 'tb.tsGt': ['Giá trị', '数值'], 'tb.tsDv': ['Đơn vị', '单位'],
+  'tb.tsXoa': ['Xoá dòng', '删除此行'], 'tb.tsCanTen': ['Dòng thông số khác cần có tên', '其他参数需填写名称'],
+  'kt.tatCa': ['Tất cả', '全部'], 'kt.ghi': ['Chọn một hoặc nhiều người. "Tất cả": ai cũng thấy máy này trong "Máy của tôi".', '可选一人或多人。"全部"：所有人的"我的设备"中都显示此设备。'],
+  'kt.mayCuaToi': ['Máy của tôi', '我的设备'], 'kt.tatCaMay': ['Tất cả máy', '全部设备'],
+  'kt.soMayToi': ['{n} máy của tôi / {tong}', '我的{n}台 / 共{tong}台'], 'kt.soMayToiLoc': ['{n} máy của tôi', '我的设备{n}台'],
+  'kt.chuaCoMayToi': ['Chưa có máy nào giao cho bạn', '暂无分配给您的设备'],
+  'kt.chonNhieu': ['Chọn nhiều', '多选'], 'kt.chonHet': ['Chọn hết', '全选'], 'kt.daChon': ['Đã chọn {n}', '已选{n}'],
+  'kt.giaoNut': ['Giao người kiểm tra ({n} máy)', '分配点检人（{n}台）'], 'kt.giao': ['Giao người kiểm tra', '分配点检人'],
+  'kt.quaNhieu': ['Mỗi lần giao tối đa 500 máy', '每次最多分配500台'], 'kt.soMayChon': ['{n} máy đã chọn', '已选{n}台设备'],
+  'kt.cach': ['Cách giao', '分配方式'], 'kt.nguoi': ['Người kiểm tra', '点检人'],
+  'kt.cach.THAY': ['Thay bằng', '替换为'], 'kt.cach.THAY.ghi': ['Máy chỉ còn những người chọn dưới đây (hoặc Tất cả)', '设备只保留下方所选人员（或全部）'],
+  'kt.cach.THEM': ['Thêm người', '添加人员'], 'kt.cach.THEM.ghi': ['Giữ người cũ, thêm người chọn. Máy đang để Tất cả sẽ chỉ còn người được thêm.', '保留原人员并添加。原为"全部"的设备将只保留所添加的人员。'],
+  'kt.cach.BO': ['Bỏ người', '移除人员'], 'kt.cach.BO.ghi': ['Bỏ người chọn khỏi các máy; máy không còn ai sẽ thành Tất cả.', '从设备中移除所选人员；无人时变为"全部"。'],
+  'kt.canNguoi': ['Chọn ít nhất một người', '请至少选择一人'], 'kt.daGiao': ['Đã giao cho {n} máy', '已分配{n}台设备'],
+  'kt.khongDoi': ['{n} máy không đổi', '{n}台无变化'],
+  'bdg.lamThay': ['Làm thay', '代做'], 'bdg.lamThayHoi': ['Làm thay?', '代做？'],
+  'bdg.lamThayGhi': ['Việc này giao cho {ten}. Bạn xác nhận làm thay? App sẽ ghi lại là làm thay.', '此项分配给{ten}。确认由您代做？系统将记录为代做。'],
+  'bdg.lamThayDongY': ['Làm thay', '代做'],
+  'dm.LOAI_LK': ['Loại linh kiện', '备件类型'], 'dm.LOAI_LK.ghi': ['Chọn khi thêm linh kiện thay thế của máy; tên linh kiện điền theo loại', '添加设备备件时选择；备件名称按类型自动填写'],
+  'lk.tieuDe': ['Linh kiện thay thế', '备件'], 'lk.mayChuaCo': ['Máy này chưa có linh kiện nào', '此设备暂无备件'],
+  'lk.them': ['Thêm linh kiện', '添加备件'], 'lk.sua': ['Sửa linh kiện', '编辑备件'], 'lk.chepTu': ['Chép từ máy khác', '从其他设备复制'],
+  'lk.mayKhac': ['+{n} máy khác', '另{n}台'], 'lk.chepMa': ['Chép mã', '复制编号'],
+  'lk.loai': ['Loại linh kiện', '备件类型'], 'lk.tenVi': ['Tên linh kiện (Việt)', '备件名称（越南语）'], 'lk.tenZh': ['Tên linh kiện (Trung)', '备件名称（中文）'],
+  'lk.maLK': ['Mã / quy cách', '型号规格'], 'lk.maGoiY': ['VD: 6205-2RS C3', '例：6205-2RS C3'],
+  'lk.maGhi': ['Ghi đúng mã in trên linh kiện để mua đúng; gõ vài chữ đầu sẽ gợi ý mã đã có', '按备件上印的型号填写以便采购；输入前几个字会提示已有型号'],
+  'lk.soLuong': ['Số lượng trên máy', '设备上数量'], 'lk.donVi': ['Đơn vị', '单位'],
+  'lk.viTri': ['Vị trí lắp', '安装位置'], 'lk.viTriGoiY': ['VD: đầu cánh bơm', '例：叶轮端'],
+  'lk.anh': ['Ảnh tem nhãn linh kiện', '备件铭牌照片'], 'lk.anhSauGhi': ['Lưu xong mở lại để thêm ảnh tem nhãn linh kiện.', '保存后重新打开可添加铭牌照片。'],
+  'lk.xoa': ['Xoá linh kiện', '删除备件'], 'lk.xoaHoi': ['Xoá linh kiện này?', '删除此备件？'],
+  'lk.xoaGhi': ['"{ten}" sẽ bị bỏ khỏi danh sách linh kiện của máy.', '"{ten}"将从设备备件清单中移除。'],
+  'lk.canTen': ['Chọn loại hoặc nhập tên linh kiện', '请选择类型或填写备件名称'], 'lk.slSai': ['Số lượng không đúng', '数量有误'],
+  'lk.chuaCoNguon': ['Chưa có máy nào khác có linh kiện để chép', '暂无其他设备有备件可复制'],
+  'lk.chep': ['Chép', '复制'], 'lk.chepTuGhi': ['Chọn máy (nên cùng model) để chép cả danh sách linh kiện sang {ma}. Linh kiện đã có sẽ bỏ qua.', '选择设备（最好同型号），将其全部备件复制到{ma}。已有的备件将跳过。'],
+  'lk.chonMayNguon': ['Chọn một máy để chép', '请选择要复制的设备'], 'lk.daCoHet': ['Máy này đã có đủ các linh kiện đó', '此设备已有这些备件'],
+  'lk.chepHoi': ['Chép linh kiện?', '复制备件？'], 'lk.chepHoiGhi': ['Chép {n} linh kiện từ {tu} sang {den}.', '将{n}个备件从{tu}复制到{den}。'],
+  'lk.boQuaTrung': ['Bỏ qua {n} linh kiện đã có.', '跳过{n}个已有备件。'],
+  'lk.daChep': ['Đã chép {n} linh kiện', '已复制{n}个备件'], 'lk.daChepCho': ['Đã chép {n} linh kiện trên máy, có mạng sẽ tự gửi', '已在本机复制{n}个备件，联网后自动发送'],
+  'lk.soLk': ['{n} linh kiện', '{n}个备件'], 'lk.cungModel': ['Cùng model', '同型号'],
+  'lk.timGoiY': ['Tìm mã, tên', '搜索型号、名称'], 'lk.moiLoai': ['Loại', '类型'], 'lk.moiNhomMay': ['Nhóm máy', '设备类别'],
+  'lk.xuatExcel': ['Xuất Excel', '导出Excel'], 'lk.xuatGhi': ['Trang "Tổng hợp" để đặt mua; trang "Theo máy" để đối chiếu.', '"汇总"页用于采购；"按设备"页用于核对。'],
+  'lk.traGhi': ['Tìm không cần dấu, không cần gạch hay khoảng trắng: "6205 2rs" tìm được "6205-2RS C3". Tra được cả khi mất mạng.', '搜索不区分声调、横线和空格："6205 2rs"可找到"6205-2RS C3"。离线也可查询。'],
+  'lk.chuaCo': ['Chưa có linh kiện nào', '暂无备件'],
+  'lk.chuaCoGhi': ['Thêm ở hồ sơ từng máy (mục Linh kiện thay thế) hoặc nhập Excel.', '在各设备档案（备件栏）添加，或导入Excel。'],
+  'lk.ketQua': ['{n} mã · {m} máy', '{n}个型号 · {m}台设备'], 'lk.soMay': ['{n} máy', '{n}台'], 'lk.soMa': ['{n} mã', '{n}个型号'],
+  'lk.tongSl': ['Tổng số lượng', '总数量'], 'lk.soMayCot': ['Số máy', '设备数'], 'lk.cacMay': ['Các máy dùng', '使用设备'], 'lk.tenMay': ['Tên máy', '设备名称'],
+  'nx.loiSo': ['{cot}: "{v}" không phải số', '{cot}："{v}"不是数字'], 'nx.loiNam': ['Năm sản xuất "{v}" không đúng', '出厂年份"{v}"有误'],
+  'nx.loiLoaiLk': ['Loại linh kiện "{v}" không có trong danh mục', '备件类型"{v}"不在类目中'],
+  'nx.loiDonVi': ['Đơn vị "{v}" không có trong danh mục', '单位"{v}"不在类目中'],
+  'nx.loiThieuMaMay': ['Thiếu mã máy', '缺少设备编码'], 'nx.loiKhongCoMay': ['Không có máy mã {v}', '没有编码为{v}的设备'],
+  'nx.hdNguoiKT': ['Họ tên người kiểm tra, nhiều người cách nhau bằng dấu phẩy; "Tất cả" để ai cũng thấy', '点检人姓名，多人用逗号分隔；填"全部"则所有人可见'],
+  'nx.hdSo': ['Số, dùng dấu phẩy hoặc chấm (7,5 hoặc 7.5)', '数字，可用逗号或小数点（7,5 或 7.5）'],
+  'nx.hdNam': ['4 chữ số, VD: 2019', '4位数字，例：2019'],
+  'nx.hdTsKhac': ['Tên: giá trị đơn vị; cách nhau bằng dấu chấm phẩy. VD: Lưu lượng: 13 m³/phút; Tốc độ: 1480 rpm', '名称: 数值 单位；用分号分隔。例：流量: 13 m³/分钟; 转速: 1480 rpm'],
+  'nx.trangLk': ['Trang "Linh kiện · 备件"', '"Linh kiện · 备件"工作表'], 'nx.trangLkNgan': ['Linh kiện', '备件'],
+  'nx.hdTrangLk': ['Mỗi dòng một linh kiện của một máy; cột Mã máy phải là máy đã có hoặc có trong trang Thiết bị', '每行为一台设备的一个备件；设备编码须为已有设备或在"设备"页中'],
+  'nx.hdMaLk': ['Mã in trên linh kiện. Trùng máy + mã + vị trí lắp với dòng đã có: bỏ qua, hoặc cập nhật nếu bật "Cập nhật"', '备件上印的型号。设备+型号+安装位置与已有相同：跳过，或开启"更新"时更新'],
+  'nx.lkGhi': ['Trang "Linh kiện · 备件" trong file mẫu để nhập linh kiện thay thế của nhiều máy một lần.', '模板中的"Linh kiện · 备件"页用于批量导入多台设备的备件。'],
+  'nx.lkMoi': ['{n} linh kiện mới', '{n}个新备件'], 'nx.lkDaCo': ['{n} linh kiện đã có', '{n}个已有备件'],
+  'nx.nhapCaLk': ['Nhập {n} máy, {m} linh kiện', '导入{n}台设备、{m}个备件'], 'nx.dsLoiLk': ['Dòng lỗi (linh kiện)', '有误的行（备件）'],
+  'nx.xongLk': ['Linh kiện: {them} mới, {sua} cập nhật, {boQua} bỏ qua', '备件：新增{them}，更新{sua}，跳过{boQua}'],
+  'nx.dangNhapLk': ['Đang nhập linh kiện {i}/{n}…', '正在导入备件 {i}/{n}…'],
+
   /* Bản xem thử */
   'demo.goiY': ['Bản xem thử: bấm nút "Xem thử" góc dưới để lấy PIN mẫu', '演示版：点击右下角"演示"按钮获取示例PIN'],
   'demo.nut': ['Xem thử', '演示'], 'demo.tieuDe': ['Bản xem thử', '演示版'],
@@ -1105,7 +1224,7 @@ var LOGO_SVG = {
  *       8 Hộp thoại, trang trượt, thông báo · 9 Màn: đăng nhập, đổi PIN, trang chủ, hàng chờ, menu cá nhân
  *       10 Bản mới (service worker) · 11 Khởi động
  * ===================================================================== */
-var APP_VER = '0.4.0';
+var APP_VER = '0.4.1';
 var API_URL = 'https://script.google.com/macros/s/AKfycbzXd2jIR-SPtjqtuSLGd21dImVSL7MlgZQTM48Dqe1Kv6xjIuJ3KBg65dpsGMTXMTVx/exec';
 var APP_URL = 'https://luongquangdao8386-ops.github.io/Codien/';   // link app trên GitHub Pages, in trên tem QR: APP_URL + '?tb=<mã>'
 var DEMO = API_URL === 'DEMO' || !!window.DEMO;
@@ -1230,7 +1349,10 @@ var IC = {
   len: 'M6 15l6-6 6 6',
   xuong: 'M6 9l6 6 6-6',
   guiTin: 'M21 4 3 11.5l6.5 2.5L12 20.5l3.2-4.3L20 20zM9.5 14 21 4',
-  thu: ['<rect x="3" y="5" width="18" height="14" rx="2"/>', 'M3.5 6.5 12 13l8.5-6.5']
+  thu: ['<rect x="3" y="5" width="18" height="14" rx="2"/>', 'M3.5 6.5 12 13l8.5-6.5'],
+  linhKien: ['M12 2.8l8 4.6v9.2l-8 4.6-8-4.6V7.4z', '<circle cx="12" cy="12" r="3.4"/>'],
+  nguoiKT: ['<circle cx="9" cy="8" r="3.5"/>', 'M2.5 20a6.5 6.5 0 0 1 11-4.7M15 17.5l2.2 2.2 4.3-4.7'],
+  chonNhieu: ['<rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/>', '<rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/>', 'M5.5 7l1.3 1.3L9 6M14 7h6.5M14 17h6.5']
 };
 function ic(ten, lop) {
   var d = IC[ten] || '', ds = Array.isArray(d) ? d : [d];
@@ -1257,13 +1379,13 @@ function tenDanhMuc(nhom, ma) {
 }
 
 /* ---------- 2. Bộ nhớ trên máy (IndexedDB; không mở được thì dùng bộ nhớ tạm) ---------- */
-var BANG = ['NguoiDung', 'DanhMuc', 'ThietBi', 'SuaChua', 'TienDoSC', 'KeHoachBD', 'BaoDuong', 'CongTo', 'ChiSo'];
-var QUYEN_DOC = { NguoiDung: 4, DanhMuc: 4, ThietBi: 4, SuaChua: 4, TienDoSC: 4, KeHoachBD: 3, BaoDuong: 3, CongTo: 3, ChiSo: 3 };
+var BANG = ['NguoiDung', 'DanhMuc', 'ThietBi', 'SuaChua', 'TienDoSC', 'KeHoachBD', 'BaoDuong', 'CongTo', 'ChiSo', 'LinhKien'];
+var QUYEN_DOC = { NguoiDung: 4, DanhMuc: 4, ThietBi: 4, SuaChua: 4, TienDoSC: 4, KeHoachBD: 3, BaoDuong: 3, CongTo: 3, ChiSo: 3, LinhKien: 3 };
 var D = {};
 BANG.forEach(function (t) { D[t] = new Map(); });
 
 var DB = (function () {
-  var TEN = DEMO ? 'codien-demo' : 'codien', PB = 1, db = null, mem = null;
+  var TEN = DEMO ? 'codien-demo' : 'codien', PB = 2, db = null, mem = null, khoMoi = [];   // PB 2 (0.4.1): thêm kho LinhKien
   var KHO = ['kv', 'hang', 'anh'].concat(BANG);
   function khoaCua(s) { return s === 'kv' ? null : s === 'hang' ? 'opId' : s === 'anh' ? 'id' : 'ID'; }
   function boNho() { mem = {}; KHO.forEach(function (s) { mem[s] = new Map(); }); }
@@ -1282,8 +1404,9 @@ var DB = (function () {
         var rq = indexedDB.open(TEN, PB);
         rq.onupgradeneeded = function () {
           var d = rq.result;
+          var cu = d.objectStoreNames.length > 0;
           KHO.forEach(function (s) {
-            if (!d.objectStoreNames.contains(s)) { var k = khoaCua(s); d.createObjectStore(s, k ? { keyPath: k } : undefined); }
+            if (!d.objectStoreNames.contains(s)) { var k = khoaCua(s); d.createObjectStore(s, k ? { keyPath: k } : undefined); if (cu) khoMoi.push(s); }
           });
         };
         rq.onsuccess = function () {
@@ -1309,6 +1432,8 @@ var DB = (function () {
   return {
     moi: DEMO,
     boNhoTam: function () { return !!mem; },
+    /** Kho vừa thêm khi nâng cấp (bản app mới có trang mới): phải tải cả trang đó từ đầu. */
+    khoMoi: function () { return khoMoi.slice(); },
     mo: function () { return (DEMO ? xoaCsdl() : Promise.resolve()).then(mo); },
     lay: function (s, k) { return mem ? Promise.resolve(sao(mem[s].get(k))) : gd(s, 'readonly', function (st) { return st.get(k); }); },
     dat: function (s, v, k) {
@@ -1821,8 +1946,8 @@ var TAB = [
   { ten: 'trangchu', ic: 'nha' }, { ten: 'phieu', ic: 'phieu' }, { ten: 'quet', ic: 'quet', giua: true },
   { ten: 'baoduong', ic: 'baoduong' }, { ten: 'dien', ic: 'dien' }, { ten: 'baohong', ic: 'canh', chiCap4: true }
 ];
-var MENU = ['trangchu', 'baoduong', 'thietbi', 'kehoach', 'baocao', 'quantri', 'hangcho', 'toi'];
-var IC_MAN = { trangchu: 'nha', baoduong: 'baoduong', thietbi: 'may', kehoach: 'lich', baocao: 'danhMuc', quantri: 'quanTri', hangcho: 'hangCho', toi: 'nguoi' };
+var MENU = ['trangchu', 'baoduong', 'thietbi', 'linhkien', 'kehoach', 'baocao', 'quantri', 'hangcho', 'toi'];
+var IC_MAN = { trangchu: 'nha', baoduong: 'baoduong', thietbi: 'may', linhkien: 'linhKien', kehoach: 'lich', baocao: 'danhMuc', quantri: 'quanTri', hangcho: 'hangCho', toi: 'nguoi' };
 
 function dungKhung() {
   var app = $('#app');
@@ -2061,7 +2186,7 @@ function oChu(id, khoa, gt, tc) {
     '<input class="o-nhap" id="' + id + '" name="' + id + '" value="' + esc(gt == null ? '' : gt) + '"' +
     (tc.kieu ? ' type="' + tc.kieu + '"' : ' type="text"') + (tc.toiDa ? ' maxlength="' + tc.toiDa + '"' : '') +
     (tc.goiY ? ' placeholder="' + tp(tc.goiY) + '"' : '') + (tc.chiDoc ? ' readonly' : '') +
-    (tc.soNguyen ? ' inputmode="numeric"' : '') + (tc.tuDong ? ' autocomplete="' + tc.tuDong + '"' : ' autocomplete="off"') +
+    (tc.soNguyen ? ' inputmode="numeric"' : '') + (tc.soThuc ? ' inputmode="decimal"' : '') + (tc.danhSach ? ' list="' + tc.danhSach + '"' : '') + (tc.tuDong ? ' autocomplete="' + tc.tuDong + '"' : ' autocomplete="off"') +
     (tc.hoa ? ' autocapitalize="characters"' : '') + '>' +
     (tc.ghi ? '<div class="o-goi-y">' + t(tc.ghi) + '</div>' : '') + '</div>';
 }
@@ -2311,7 +2436,8 @@ man('trangchu', {
     var o = [];
     if (dungDuoc('quet')) o.push(['#/quet', 'qr', 'man.quet', '']);
     if (dungDuoc('baoduong')) o.push(['#/baoduong', 'baoduong', 'man.baoduong', typeof soViecBdChu === 'function' ? soViecBdChu() : '']);
-    if (dungDuoc('thietbi')) o.push(['#/thietbi', 'may', 'man.thietbi', t('soMay', { n: typeof dsMay === 'function' ? dsMay().length : 0 })]);
+    if (dungDuoc('thietbi')) o.push(['#/thietbi', 'may', 'man.thietbi', typeof soMayChu === 'function' ? soMayChu() : '']);
+    if (dungDuoc('linhkien')) o.push(['#/linhkien', 'linhKien', 'man.linhkien', typeof soMaLkChu === 'function' ? soMaLkChu() : '']);
     if (dungDuoc('nguoidung')) o.push(['#/nguoidung', 'nhomNguoi', 'man.nguoidung', t('soNguoi', { n: demHoatDong(D.NguoiDung) })]);
     if (dungDuoc('danhmuc')) o.push(['#/danhmuc', 'danhMuc', 'man.danhmuc', t('soMuc', { n: demHoatDong(D.DanhMuc) })]);
     if (dungDuoc('quantri')) o.push(['#/quantri', 'quanTri', 'man.quantri', '']);
@@ -2481,6 +2607,9 @@ function khoiDong() {
     S.pinOff = o.pinOff || {};
     S.khoaOff = o.khoaOff || { sai: 0, den: 0 };
     S.moc = o.moc || {};
+    // Bản app cũ đã nhận mốc của trang mà nó chưa lưu (ví dụ LinhKien trước 0.4.1): trang vừa có kho mới thì tải lại từ đầu.
+    var boMoc = DB.khoMoi().filter(function (k) { return S.moc[k]; });
+    if (boMoc.length) { boMoc.forEach(function (k) { delete S.moc[k]; }); kvDat('moc', S.moc); }
     S.capDaTai = o.capDaTai || null;
     S.dongBoLuc = o.dongBoLuc || 0;
     S.caiDat = o.caiDat || {};
@@ -3014,6 +3143,8 @@ function xemAnh(ds, i, tc) {
  *   Danh sách máy (tìm không dấu / chữ Trung, lọc trạng thái, nhóm, khu vực) · Hồ sơ máy (ảnh, thông tin)
  *   Sửa máy, đổi trạng thái (qua hàng chờ, làm được khi mất mạng) · Quét tem QR (camera, ảnh, gõ tìm)
  *   In tem QR ra PDF A4 · Nhập / xuất danh sách máy bằng Excel
+ * Phiên 4b: thông số máy (điện, mua sắm, thông số khác) · người kiểm tra (nhiều người hoặc Tất cả) · "Máy của tôi"
+ *   · giao người kiểm tra hàng loạt (chọn nhiều) · nhập / xuất linh kiện trong cùng file Excel
  * ===================================================================== */
 var TT_TB = ['CHAY', 'DUNG', 'SUA', 'DU_PHONG', 'THANH_LY'];
 var MAU_TT = { CHAY: 'tot', DUNG: 'loi', SUA: 'canh', DU_PHONG: 'chinh', THANH_LY: '' };
@@ -3023,6 +3154,7 @@ function maViec(id, ma) { var x = D.ThietBi.get(id); ma = ma || (x && x.Ma); ret
 NHAN_VIEC.luuThietBi = function (it) { return t(it.payload.xoa ? 'viec.xoaThietBi' : 'viec.luuThietBi') + maViec(it.payload.ID, it.payload.Ma); };
 NHAN_VIEC.doiTrangThaiTB = function (it) { return t('viec.doiTrangThaiTB') + maViec(it.payload.ID) + ' ' + hhTT(it.payload.TrangThai); };
 SAU_GUI.luuThietBi = function (d) { if (d && d.thietBi) luuDongMay('ThietBi', d.thietBi).then(veLaiTB); };
+NHAN_VIEC.giaoKiemTra = 'viec.giaoKiemTra';
 SAU_GUI.doiTrangThaiTB = SAU_GUI.luuThietBi;
 function veLaiTB() {
   if (S.manHienTai === 'thietbi') veDsMay();
@@ -3092,6 +3224,13 @@ function tuoiMay(s) {
   return thang < 12 ? t('tb.thang', { n: thang }) : t('tb.nam', { n: so(Math.floor(thang / 12 * 10) / 10) });
 }
 function nhieuDong(s) { return s ? esc(s).replace(/\n/g, '<br>') : ''; }
+/** Hạn bảo hành: "Bảo hành đến dd/mm/yyyy" (còn) hoặc "Hết bảo hành". */
+function baoHanhChu(s) {
+  if (!/^\d{4}-\d{2}-\d{2}/.test(String(s || ''))) return '';
+  var nay = gioVN(), homNayS = nay.getUTCFullYear() + '-' + hai(nay.getUTCMonth() + 1) + '-' + hai(nay.getUTCDate());
+  return String(s).slice(0, 10) >= homNayS ? '<span class="hh hh-tot">' + t('tb.baoHanhDen', { ngay: ngayChu(s) }) + '</span>'
+    : '<span class="hh hh-canh">' + t('tb.hetBaoHanh') + '</span> <span class="dong-phu inline so">' + ngayChu(s) + '</span>';
+}
 function lienKet(s) {
   if (!s) return '';
   return String(s).split(/\n/).map(function (d) {
@@ -3109,24 +3248,94 @@ function canhBaoMay() {
   return '<a class="the canh-bao" href="#/thietbi/DUNG"><span class="ic-dau">' + ic('canh') + '</span><span class="dong-chu"><span class="dong-chinh">' + t('tb.dangDung', { n: n }) + '</span></span>' + ic('phai', 'ic-nho') + '</a>';
 }
 
+/* ---------- Người kiểm tra (phiên 4b): NguoiKiemTra = [UID]; [] = Tất cả; dữ liệu cũ: [PhuTrach] ---------- */
+function nguoiConDung(id) { var u = id && D.NguoiDung.get(id); return !!(u && Number(u.Xoa) !== 1 && Number(u.HoatDong) === 1); }
+function dsKiemTraGoc(m) {
+  if (!m) return [];
+  var ds = Array.isArray(m.NguoiKiemTra) ? m.NguoiKiemTra.filter(function (x) { return typeof x === 'string' && x; }) : [];
+  return ds.length ? ds : (m.PhuTrach ? [String(m.PhuTrach)] : []);
+}
+/** Người kiểm tra đang dùng được (người đã khoá / xoá bỏ qua). [] = Tất cả. */
+function dsKiemTra(m) { return dsKiemTraGoc(m).filter(nguoiConDung); }
+/** "Máy của tôi": máy giao cho mình hoặc để Tất cả. */
+function mayCuaToi(m) { var ds = dsKiemTra(m); return !ds.length || ds.indexOf(S.uid) >= 0; }
+/** Tên nhiều người (dòng phụ, chữ Trung cùng dòng); Tất cả → rỗng. */
+function tenDsNguoiNgan(ds) { return ds.map(tenNguoiTheoId).join(', '); }
+/** Huy hiệu tên từng người, hoặc "Tất cả". */
+function hhDsNguoi(ds) {
+  return '<span class="cac-hh" style="margin:0">' + (ds.length ? ds.map(function (id) { return '<span class="hh hh-chinh">' + tenNguoiTheoId(id) + '</span>'; }).join('')
+    : '<span class="hh">' + t('kt.tatCa') + '</span>') + '</span>';
+}
+/** Người chọn được làm người kiểm tra: cấp 2–3 đang hoạt động (+ người đang được giao). [[ID, tên]] */
+function nguoiChonKT(giu) {
+  var ds = [];
+  D.NguoiDung.forEach(function (u) {
+    if (Number(u.Xoa) === 1) return;
+    if ((Number(u.HoatDong) === 1 && (Number(u.Cap) === 2 || Number(u.Cap) === 3)) || (giu || []).indexOf(u.ID) >= 0) ds.push(u);
+  });
+  return ds.sort(function (a, b) { return String(a.Ten).localeCompare(String(b.Ten), 'vi'); });
+}
+/** Ô chọn người kiểm tra: "Tất cả" + từng người (chọn nhiều). tc.khongTatCa: ẩn ô Tất cả. */
+function oChonNguoiKT(chon, tc) {
+  tc = tc || {};
+  chon = chon || [];
+  var ds = nguoiChonKT(chon);
+  return '<div class="chon-nguoi" data-chon-nguoi>' +
+    '<label class="chip-chon tat-ca"' + (tc.khongTatCa ? ' hidden' : '') + '><input type="checkbox" data-tat-ca' + (!chon.length ? ' checked' : '') + '><span>' + ic('nhomNguoi', 'ic-nho') + t('kt.tatCa') + '</span></label>' +
+    ds.map(function (u) {
+      return '<label class="chip-chon' + (Number(u.HoatDong) !== 1 ? ' mo' : '') + '"><input type="checkbox" value="' + esc(u.ID) + '"' + (chon.indexOf(u.ID) >= 0 ? ' checked' : '') + '>' +
+        '<span>' + tenNguoi(u) + '</span></label>';
+    }).join('') + '</div>';
+}
+/** Gắn hành vi: chọn "Tất cả" thì bỏ chọn người; chọn người thì bỏ "Tất cả"; không chọn ai thì là Tất cả. */
+function ganChonNguoiKT(hop) {
+  hop.addEventListener('change', function (e) {
+    var c = e.target;
+    if (c.type !== 'checkbox') return;
+    var tatCa = $('[data-tat-ca]', hop), nguoi = $$('input[value]', hop);
+    if (c === tatCa) { if (c.checked) nguoi.forEach(function (x) { x.checked = false; }); else if (!nguoi.some(function (x) { return x.checked; })) c.checked = true; }
+    else tatCa.checked = !nguoi.some(function (x) { return x.checked; });
+  });
+}
+function docChonNguoiKT(hop) { return $$('input[value]:checked', hop).map(function (x) { return x.value; }); }
+function soMayChu() {
+  var n = 0, toi = 0, laKtv = S.nd && Number(S.nd.Cap) === 3;
+  D.ThietBi.forEach(function (x) { if (Number(x.Xoa) !== 1) { n++; if (laKtv && x.TrangThai !== 'THANH_LY' && mayCuaToi(x)) toi++; } });
+  return laKtv ? t('kt.soMayToi', { n: toi, tong: n }) : t('soMay', { n: n });
+}
+
 /* ---------- Danh sách máy ---------- */
-var LOC_TB = { q: '', tt: '', nhom: '', kv: '', hien: 50 };
+var LOC_TB = { q: '', tt: '', nhom: '', kv: '', hien: 50, toi: false, uid: '' };
+var CHON_TB = { bat: false, ds: new Set() };   // chọn nhiều để giao người kiểm tra (cấp 1–2)
+function coLocToi() { return !!S.nd && (Number(S.nd.Cap) === 2 || Number(S.nd.Cap) === 3); }
 man('thietbi', {
   xong: true, cap: 4, cha: '#/',
   lamMoi: function () { veDsMay(); },
   ve: function (el, ts) {
-    if (ts[0] && TT_TB.indexOf(ts[0]) >= 0) { LOC_TB.tt = ts[0]; history.replaceState(null, '', '#/thietbi'); S.thamSo = ''; }
+    if (LOC_TB.uid !== S.uid) { LOC_TB.uid = S.uid; LOC_TB.toi = Number(S.nd.Cap) === 3; CHON_TB.bat = false; CHON_TB.ds.clear(); }   // kỹ thuật viên mặc định "Máy của tôi"
+    if (ts[0] && TT_TB.indexOf(ts[0]) >= 0) { LOC_TB.tt = ts[0]; LOC_TB.toi = false; history.replaceState(null, '', '#/thietbi'); S.thamSo = ''; }
+    if (!coQuyen(2)) CHON_TB.bat = false;
     LOC_TB.hien = 50;
     var ql = coQuyen(2);
     el.innerHTML =
       (ql ? '<div class="hang-nut ba"><button class="nut tang" data-act="themMay">' + ic('them', 'ic-nho') + t('tb.them') + '</button>' +
         '<a class="nut phu tang" href="#/nhapexcel">' + ic('bang', 'ic-nho') + t('tb.nhapExcel') + '</a>' +
         '<a class="nut phu tang" href="#/intem">' + ic('qr', 'ic-nho') + t('tb.inTem') + '</a></div>' : '') +
+      (coLocToi() ? '<div class="phan-doan nho" role="group" aria-label="' + tp('kt.mayCuaToi') + '" id="loc-toi">' +
+        '<button type="button" data-act="locToiTB" data-v="1"' + (LOC_TB.toi ? ' class="dang" aria-pressed="true"' : ' aria-pressed="false"') + '>' + t('kt.mayCuaToi') + '</button>' +
+        '<button type="button" data-act="locToiTB" data-v="0"' + (!LOC_TB.toi ? ' class="dang" aria-pressed="true"' : ' aria-pressed="false"') + '>' + t('kt.tatCaMay') + '</button></div>' : '') +
       '<div class="o-tim">' + ic('tim', 'ic-nho') + '<input class="o-nhap" id="tim-tb" type="search" enterkeyhint="search" placeholder="' + tp('tb.timGoiY') + '" value="' + esc(LOC_TB.q) + '" autocomplete="off"></div>' +
       '<div class="dai-chip" id="loc-tt"></div>' +
       '<div class="hai-cot">' + chonLoc('loc-nhom', 'NHOM_TB', LOC_TB.nhom, 'tb.moiNhom') + chonLoc('loc-kv', 'KHU_VUC', LOC_TB.kv, 'tb.moiKhuVuc') + '</div>' +
-      '<div id="ds-tb"></div>';
+      '<div id="ds-tb"></div>' +
+      (ql ? '<div class="thanh-nut-duoi" id="thanh-chon-tb" hidden></div>' : '');
     $('#tim-tb', el).addEventListener('input', function (e) { LOC_TB.q = e.target.value; LOC_TB.hien = 50; veDsMay(); });
+    $('#ds-tb', el).addEventListener('change', function (e) {
+      var c = e.target;
+      if (!CHON_TB.bat || !c.matches('input[data-id]')) return;
+      if (c.checked) CHON_TB.ds.add(c.getAttribute('data-id')); else CHON_TB.ds.delete(c.getAttribute('data-id'));
+      veThanhChonTB();
+    });
     $('#loc-nhom', el).addEventListener('change', function (e) { LOC_TB.nhom = e.target.value; e.target.classList.toggle('dang', !!e.target.value); LOC_TB.hien = 50; veDsMay(); });
     $('#loc-kv', el).addEventListener('change', function (e) { LOC_TB.kv = e.target.value; e.target.classList.toggle('dang', !!e.target.value); LOC_TB.hien = 50; veDsMay(); });
     veDsMay();
@@ -3136,8 +3345,9 @@ function veDsMay() {
   var hop = $('#ds-tb');
   if (!hop) return;
   var dm = bangDmPhang();
+  var toi = LOC_TB.toi && coLocToi();
   var goc = dsMay().filter(function (x) {
-    return (!LOC_TB.nhom || x.Nhom === LOC_TB.nhom) && (!LOC_TB.kv || x.KhuVuc === LOC_TB.kv) && khopMay(x, LOC_TB.q, dm);
+    return (!LOC_TB.nhom || x.Nhom === LOC_TB.nhom) && (!LOC_TB.kv || x.KhuVuc === LOC_TB.kv) && (!toi || mayCuaToi(x)) && khopMay(x, LOC_TB.q, dm);
   });
   var dem = { '': 0 };
   goc.forEach(function (x) { var k = x.TrangThai || 'CHAY'; dem[k] = (dem[k] || 0) + 1; if (k !== 'THANH_LY') dem['']++; });
@@ -3150,15 +3360,96 @@ function veDsMay() {
     hop.innerHTML = '<div class="the trong">' + ic('may') + '<div class="dong-chinh">' + t('tb.trong') + '</div>' + (coQuyen(2) ? '<div class="dong-phu">' + t('tb.trongGhi') + '</div>' : '') + '</div>';
     return;
   }
-  if (!ds.length) { hop.innerHTML = '<div class="the trong">' + ic('tim') + '<div>' + t('khongThay') + '</div></div>'; return; }
-  hop.innerHTML = '<p class="muc-ghi so">' + t('tb.soKetQua', { n: so(ds.length) }) + '</p>' +
-    '<div class="nhom">' + ds.slice(0, LOC_TB.hien).map(dongMay).join('') + '</div>' +
+  LOC_TB.dsHien = ds;
+  veThanhChonTB();
+  if (!ds.length) {
+    hop.innerHTML = '<div class="the trong">' + ic('tim') + '<div>' + t(toi && !LOC_TB.q && !LOC_TB.nhom && !LOC_TB.kv ? 'kt.chuaCoMayToi' : 'khongThay') + '</div>' +
+      (toi ? '<button class="nut phu" data-act="locToiTB" data-v="0">' + t('kt.tatCaMay') + '</button>' : '') + '</div>';
+    return;
+  }
+  hop.innerHTML = '<div class="hang-dem"><p class="muc-ghi so">' + t(toi ? 'kt.soMayToiLoc' : 'tb.soKetQua', { n: so(ds.length) }) + '</p>' +
+    (coQuyen(2) && !CHON_TB.bat ? '<button class="nut-chu nho" data-act="tbChonNhieu">' + ic('chonNhieu', 'ic-nho') + t('kt.chonNhieu') + '</button>' : '') + '</div>' +
+    '<div class="nhom">' + ds.slice(0, LOC_TB.hien).map(CHON_TB.bat ? dongChonMay : dongMay).join('') + '</div>' +
     (ds.length > LOC_TB.hien ? '<button class="nut phu rong" data-act="xemThemMay">' + t('tb.xemThem') + ' <span class="so">(' + so(ds.length - LOC_TB.hien) + ')</span></button>' : '');
 }
+/* Chọn nhiều máy → giao người kiểm tra (cấp 1–2) */
+function dongChonMay(x) {
+  var phu = phuMay(x), kt = dsKiemTra(x);
+  return '<label class="dong dong-chon"><input type="checkbox" data-id="' + esc(x.ID) + '"' + (CHON_TB.ds.has(x.ID) ? ' checked' : '') + '>' +
+    '<span class="dong-chu"><span class="dong-chinh"><span class="ma">' + esc(x.Ma) + '</span> ' + tenMay(x) + '</span>' +
+    (phu ? '<span class="dong-phu gon" style="display:block">' + phu + '</span>' : '') +
+    '<span class="dong-phu gon" style="display:block">' + ic('nguoiKT', 'ic-nho') + ' ' + (kt.length ? tenDsNguoiNgan(kt) : t('kt.tatCa')) + '</span></span></label>';
+}
+function veThanhChonTB() {
+  var el = $('#thanh-chon-tb');
+  if (!el) return;
+  el.hidden = !CHON_TB.bat;
+  if (!CHON_TB.bat) { el.innerHTML = ''; return; }
+  CHON_TB.ds.forEach(function (id) { var x = D.ThietBi.get(id); if (!x || Number(x.Xoa) === 1) CHON_TB.ds.delete(id); });
+  var n = CHON_TB.ds.size;
+  el.innerHTML = '<div class="thanh-chon"><span class="so">' + t('kt.daChon', { n: n }) + '</span>' +
+    '<button type="button" class="nut-chu nho" data-act="tbChonHet">' + t('kt.chonHet') + '</button>' +
+    '<button type="button" class="nut-chu nho" data-act="tbThoatChon">' + t('xong') + '</button></div>' +
+    '<button class="nut rong tang" data-act="tbGiaoKT"' + (n ? '' : ' disabled') + '>' + ic('nguoiKT', 'ic-nho') + t('kt.giaoNut', { n: n }) + '</button>';
+}
+HANH.locToiTB = function (b) {
+  LOC_TB.toi = b.getAttribute('data-v') === '1';
+  LOC_TB.hien = 50;
+  $$('#loc-toi button').forEach(function (x) { var on = x.getAttribute('data-v') === (LOC_TB.toi ? '1' : '0'); x.classList.toggle('dang', on); x.setAttribute('aria-pressed', on); });
+  veDsMay();
+};
+HANH.tbChonNhieu = function () { CHON_TB.bat = true; CHON_TB.ds.clear(); veDsMay(); };
+HANH.tbThoatChon = function () { CHON_TB.bat = false; CHON_TB.ds.clear(); veDsMay(); };
+HANH.tbChonHet = function () {
+  var ds = LOC_TB.dsHien || [], het = ds.length && ds.every(function (x) { return CHON_TB.ds.has(x.ID); });
+  ds.forEach(function (x) { if (het) CHON_TB.ds.delete(x.ID); else CHON_TB.ds.add(x.ID); });
+  veDsMay();
+};
+HANH.tbGiaoKT = function () { if (CHON_TB.ds.size) moGiaoKT(Array.from(CHON_TB.ds)); };
+/** Giao người kiểm tra cho nhiều máy (cần mạng): thay bằng / thêm người / bỏ người. */
+function moGiaoKT(ids) {
+  if (ids.length > 500) return bao(t('kt.quaNhieu'), 'loi');
+  var html = '<p class="muc-ghi so">' + t('kt.soMayChon', { n: ids.length }) + '</p>' +
+    '<div class="o"><span class="o-nhan">' + t('kt.cach') + '</span><div class="chon-the" id="kt-cach">' +
+    ['THAY', 'THEM', 'BO'].map(function (k) {
+      return '<label><input type="radio" name="cach" value="' + k + '"' + (k === 'THAY' ? ' checked' : '') + '><span><span class="dong-chinh">' + t('kt.cach.' + k) + '</span>' +
+        '<span class="dong-phu" style="display:block">' + t('kt.cach.' + k + '.ghi') + '</span></span></label>';
+    }).join('') + '</div></div>' +
+    '<div class="o"><span class="o-nhan">' + t('kt.nguoi') + '</span>' + oChonNguoiKT([]) + '</div>' +
+    '<p class="muc-ghi">' + t('qt.canMang') + '</p>';
+  moTrang({
+    tieuDe: 'kt.giao', html: html,
+    luu: function (f) {
+      if (!coMangHoacBao()) return false;
+      var cach = (($('input[name="cach"]:checked', f) || {}).value) || 'THAY', nguoi = docChonNguoiKT($('[data-chon-nguoi]', f));
+      if (cach !== 'THAY' && !nguoi.length) { bao(t('kt.canNguoi'), 'loi'); return false; }
+      return goiThang('giaoKiemTra', { dsMaTB: ids, cach: cach, nguoi: nguoi }, { ghi: true, lau: ids.length > 100 }).then(function (d) {
+        d = d || {};
+        return Promise.all((d.thietBi || []).map(function (x) { return luuDongMay('ThietBi', x); })).then(function () {
+          bao(t('kt.daGiao', { n: d.so || 0 }) + (d.boQua ? ' · ' + t('kt.khongDoi', { n: d.boQua }) : ''), 'tot', 3500);
+          CHON_TB.bat = false; CHON_TB.ds.clear();
+          veMan({ giuCuon: true });
+          return true;
+        });
+      });
+    },
+    moXong: function (f) {
+      var hop = $('[data-chon-nguoi]', f);
+      ganChonNguoiKT(hop);
+      $('#kt-cach', f).addEventListener('change', function () {
+        var thay = ($('input[name="cach"]:checked', f) || {}).value === 'THAY', tc = $('.tat-ca', hop);
+        tc.hidden = !thay;
+        if (!thay) $('[data-tat-ca]', hop).checked = false;
+        else $('[data-tat-ca]', hop).checked = !docChonNguoiKT(hop).length;
+      });
+    }
+  });
+}
+function coSo(v) { return v !== '' && v != null && isFinite(v); }
 function dongMay(x) {
   var a = anhCua('ThietBi', x)[0], hh = [hhTT(x.TrangThai)];
   if (x._cho) { var v = viecDangCho(x); hh.push('<span class="hh ' + (v && v.trangThai === 'loi' ? 'hh-loi">' + t('hc.loi') : 'hh-canh">' + t('choGui')) + '</span>'); }
-  var phu = phuMay(x);
+  var phu = [phuMay(x), coSo(x.CongSuat) ? '<span class="so">' + so(x.CongSuat) + ' kW</span>' : ''].filter(Boolean).join(' · ');
   return '<a class="dong dong-may" href="#/hoso/' + encodeURIComponent(x.ID) + '">' +
     '<span class="anh-may">' + (a ? theAnh(a, 200) : ic('may')) + '</span>' +
     '<span class="dong-chu"><span class="dong-chinh"><span class="ma">' + esc(x.Ma) + '</span> ' + tenMay(x) + '</span>' +
@@ -3170,8 +3461,14 @@ HANH.xemThemMay = function () { LOC_TB.hien += 50; veDsMay(); };
 HANH.themMay = function () { moSuaMay(null); };
 
 /* ---------- Hồ sơ máy ---------- */
+var VE_HOSO = {};   // hồ sơ mở từ Tra linh kiện: nút lùi quay lại đó (các màn con như xác nhận, kế hoạch không ghi đè)
 man('hoso', {
-  xong: true, cap: 4, cha: '#/thietbi',
+  xong: true, cap: 4,
+  cha: function (ts) {
+    var tr = S.duongTruoc || '';
+    if (/^#\/(thietbi|linhkien)(\/|$)/.test(tr)) VE_HOSO[ts[0]] = tr;
+    return VE_HOSO[ts[0]] || '#/thietbi';
+  },
   ve: function (el, ts) {
     var x = D.ThietBi.get(ts[0]);
     if (!x || Number(x.Xoa) === 1) {
@@ -3184,15 +3481,27 @@ man('hoso', {
     if (ktv && (tt0 !== 'THANH_LY' || ql)) nut.push('<button class="nut phu tang" data-act="doiTTMay" data-id="' + esc(x.ID) + '">' + ic('lamMoi', 'ic-nho') + t('tb.doiTT') + '</button>');
     if (ql) nut.push('<button class="nut phu tang" data-act="suaMay" data-id="' + esc(x.ID) + '">' + ic('sua', 'ic-nho') + t('tb.sua') + '</button>');
     if (ql) nut.push('<a class="nut phu tang" href="#/intem/' + encodeURIComponent(x.ID) + '">' + ic('qr', 'ic-nho') + t('tb.inTemMay') + '</a>');
+    var kt = dsKiemTra(x);
     var ttin = [
       ['tb.nhom', x.Nhom ? tenDanhMuc('NHOM_TB', x.Nhom) : ''],
       ['tb.khuVuc', x.KhuVuc ? tenDanhMuc('KHU_VUC', x.KhuVuc) : ''],
       ['tb.viTri', esc(x.ViTri)],
+      ['tb.nguoiKiemTra', hhDsNguoi(kt)],
       ['tb.hangSX', esc(x.HangSX)], ['tb.model', esc(x.Model)], ['tb.soSeri', '<span class="so">' + esc(x.SoSeri) + '</span>'],
+      ['tb.namSX', coSo(x.NamSX) ? '<span class="so">' + esc(x.NamSX) + '</span>' : ''],
       ['tb.ngaySD', x.NgaySD ? '<span class="so">' + ngayChu(x.NgaySD) + '</span> <span class="dong-phu inline">' + tuoiMay(x.NgaySD) + '</span>' : ''],
-      ['tb.phuTrach', x.PhuTrach ? tenNguoiTheoId(x.PhuTrach) : ''],
-      ['tb.thongSo', nhieuDong(x.ThongSo)], ['tb.taiLieu', lienKet(x.TaiLieu)], ['tb.ghiChu', nhieuDong(x.GhiChu)]
+      ['tb.nhaCungCap', esc(x.NhaCungCap)],
+      ['tb.baoHanh', baoHanhChu(x.HetBaoHanh)],
+      ['tb.maTaiSan', x.MaTaiSan ? '<span class="so">' + esc(x.MaTaiSan) + '</span>' : ''],
+      ['tb.taiLieu', lienKet(x.TaiLieu)], ['tb.ghiChu', nhieuDong(x.GhiChu)]
     ].filter(function (r) { return r[1] && r[1] !== '<span class="so"></span>'; });
+    var tsk = Array.isArray(x.ThongSoKhac) ? x.ThongSoKhac : [];
+    var tso = [
+      ['tb.congSuat', coSo(x.CongSuat) ? '<span class="so">' + so(x.CongSuat) + '</span> kW' : ''],
+      ['tb.dienAp', x.DienAp ? '<span class="so">' + esc(x.DienAp) + '</span>' + (/[0-9]$/.test(x.DienAp) ? ' V' : '') : ''],
+      ['tb.dongDien', coSo(x.DongDien) ? '<span class="so">' + so(x.DongDien) + '</span> A' : ''],
+      ['tb.thongSo', nhieuDong(x.ThongSo)]
+    ].filter(function (r) { return r[1]; });
     el.innerHTML =
       '<div class="the the-may">' +
       '<div class="may-dau"><span class="ma ma-lon">' + esc(x.Ma) + '</span>' + hhTT(tt0) + '</div>' +
@@ -3202,6 +3511,7 @@ man('hoso', {
       (nut.length ? '<div class="hang-nut">' + nut.join('') + '</div>' : '') +
       '</div>' +
       (typeof bdHoSo === 'function' ? bdHoSo(x) : '') +
+      (typeof lkHoSo === 'function' ? lkHoSo(x) : '') +
       '<section class="muc"><h2 class="muc-tieu-de">' + t('tb.anh') + ' <span class="so">' + anh.length + '</span></h2>' +
       (anh.length || ql ? '<div class="luoi-anh">' + anh.map(function (a, i) {
         return '<button class="o-anh" data-act="xemAnhMay" data-id="' + esc(x.ID) + '" data-i="' + i + '">' + theAnh(a, 400) +
@@ -3211,6 +3521,12 @@ man('hoso', {
       '</div>' : '<p class="muc-ghi">' + t('tb.chuaCoAnh') + '</p>') + '</section>' +
       (ttin.length ? '<section class="muc"><h2 class="muc-tieu-de">' + t('tb.thongTin') + '</h2><div class="nhom">' + ttin.map(function (r) {
         return '<div class="kv"><div class="kv-nhan">' + t(r[0]) + '</div><div class="kv-gt">' + r[1] + '</div></div>';
+      }).join('') + '</div></section>' : '') +
+      (tso.length || tsk.length ? '<section class="muc"><h2 class="muc-tieu-de">' + t('tb.thongSoMuc') + '</h2><div class="nhom">' + tso.map(function (r) {
+        return '<div class="kv"><div class="kv-nhan">' + t(r[0]) + '</div><div class="kv-gt">' + r[1] + '</div></div>';
+      }).join('') + tsk.map(function (o) {
+        return '<div class="kv kv-ngang"><div class="kv-nhan" style="font-size:14px">' + tt(o.vi, o.zh).replace('<span class="zh"', '<span class="zh" style="display:inline"') + '</div>' +
+          '<div class="kv-gt so" style="text-align:right">' + esc(o.gt) + (o.dv ? ' ' + esc(o.dv) : '') + '</div></div>';
       }).join('') + '</div></section>' : '') +
       '<p class="muc-ghi so gon">' + (x.CapNhat ? t('suaLuc') + ' ' + chuMayChu(x.CapNhat) + (x.CapNhatBoi ? ' · ' + tenNguoiTheoId(x.CapNhatBoi) : '') : '') + '</p>';
     var inp = $('#them-anh-may', el);
@@ -3270,12 +3586,9 @@ function moSuaMay(x) {
   var dmChon = function (nhom, gt) {
     return dsDanhMuc(nhom, gt).map(function (o) { return [o.Ma, (o.TenVi || o.TenZh) + (o.TenZh && o.TenZh !== o.TenVi ? ' · ' + o.TenZh : '') + (nhom === 'NHOM_TB' ? ' (' + o.Ma + ')' : '')]; });
   };
-  var nguoi = [];
-  D.NguoiDung.forEach(function (u) {
-    if (Number(u.Xoa) !== 1 && ((Number(u.Cap) <= 3 && Number(u.HoatDong) === 1) || u.ID === x.PhuTrach)) nguoi.push([u.ID, u.Ten + (u.TenZh && u.TenZh !== u.Ten ? ' · ' + u.TenZh : '')]);
-  });
-  nguoi.sort(function (a, b) { return a[1].localeCompare(b[1], 'vi'); });
   var ttDs = TT_TB.map(function (k) { return [k, TX['tt.' + k][0] + ' · ' + TX['tt.' + k][1]]; });
+  var ktGoc = dsKiemTraGoc(x).filter(function (id) { var u = D.NguoiDung.get(id); return u && Number(u.Xoa) !== 1; });
+  var tsk = Array.isArray(x.ThongSoKhac) ? x.ThongSoKhac : [];
   var html =
     oChu('TenVi', 'tb.tenVi', x.TenVi, { batBuoc: true, toiDa: 100 }) +
     oChu('TenZh', 'tb.tenZh', x.TenZh, { toiDa: 100, ghi: 'tb.tenZhGhi' }) +
@@ -3284,10 +3597,24 @@ function moSuaMay(x) {
     oChon('KhuVuc', 'tb.khuVuc', dmChon('KHU_VUC', x.KhuVuc), x.KhuVuc, { trong: 'chuaChon' }) +
     oChu('ViTri', 'tb.viTri', x.ViTri, { toiDa: 100 }) +
     oChon('TrangThai', 'tb.trangThai', ttDs, x.TrangThai || 'CHAY') +
-    oChon('PhuTrach', 'tb.phuTrach', nguoi, x.PhuTrach, { trong: 'chuaChon' }) +
+    '<div class="o"><span class="o-nhan">' + t('tb.nguoiKiemTra') + '</span>' + oChonNguoiKT(ktGoc) + '<div class="o-goi-y">' + t('kt.ghi') + '</div></div>' +
     '<div class="hai-cot">' + oChu('HangSX', 'tb.hangSX', x.HangSX, { toiDa: 60 }) + oChu('Model', 'tb.model', x.Model, { toiDa: 60 }) + '</div>' +
     '<div class="hai-cot">' + oChu('SoSeri', 'tb.soSeri', x.SoSeri, { toiDa: 60 }) + oChu('NgaySD', 'tb.ngaySD', x.NgaySD, { kieu: 'date' }) + '</div>' +
-    oVung('ThongSo', 'tb.thongSo', x.ThongSo, { toiDa: 1000 }) +
+    '<h3 class="o-nhom">' + ic('dien', 'ic-nho') + t('tb.nhomDien') + '</h3>' +
+    '<div class="ba-cot can-duoi">' + oChu('CongSuat', 'tb.congSuatNgan', coSo(x.CongSuat) ? x.CongSuat : '', { soThuc: true, toiDa: 12 }) +
+    oChu('DienAp', 'tb.dienApNgan', x.DienAp, { toiDa: 20, goiY: 'tb.dienApGoiY' }) +
+    oChu('DongDien', 'tb.dongDienNgan', coSo(x.DongDien) ? x.DongDien : '', { soThuc: true, toiDa: 12 }) + '</div>' +
+    oVung('ThongSo', 'tb.thongSo', x.ThongSo, { toiDa: 1000, dong: 2 }) +
+    '<h3 class="o-nhom">' + ic('bang', 'ic-nho') + t('tb.nhomMua') + '</h3>' +
+    oChu('NhaCungCap', 'tb.nhaCungCap', x.NhaCungCap, { toiDa: 100 }) +
+    '<div class="hai-cot can-duoi">' + oChu('NamSX', 'tb.namSX', coSo(x.NamSX) ? x.NamSX : '', { soNguyen: true, toiDa: 4 }) +
+    oChu('HetBaoHanh', 'tb.hetBaoHanhNgay', x.HetBaoHanh, { kieu: 'date' }) + '</div>' +
+    oChu('MaTaiSan', 'tb.maTaiSan', x.MaTaiSan, { toiDa: 40 }) +
+    '<h3 class="o-nhom">' + ic('danhMuc', 'ic-nho') + t('tb.thongSoKhac') + '</h3>' +
+    '<div id="ts-khac" class="ds-ts">' + tsk.map(oTsKhac).join('') + '</div>' +
+    '<button type="button" class="nut phu" data-k="themTs">' + ic('them', 'ic-nho') + t('tb.themTs') + '</button>' +
+    '<div class="o-goi-y">' + t('tb.tsGhi') + '</div>' +
+    '<h3 class="o-nhom">' + ic('thongTin', 'ic-nho') + t('tb.nhomKhac') + '</h3>' +
     oVung('TaiLieu', 'tb.taiLieu', x.TaiLieu, { toiDa: 1000, ghi: 'tb.taiLieuGhi', dong: 2 }) +
     oVung('GhiChu', 'tb.ghiChu', x.GhiChu, { toiDa: 1000 }) +
     (moi ? '<p class="muc-ghi">' + t('tb.anhSauGhi') + '</p>' :
@@ -3298,13 +3625,27 @@ function moSuaMay(x) {
     html: html,
     luu: function (f) {
       var p = { ID: moi ? taoId() : x.ID };
-      ['TenVi', 'TenZh', 'Nhom', 'KhuVuc', 'ViTri', 'TrangThai', 'PhuTrach', 'HangSX', 'Model', 'SoSeri', 'NgaySD', 'ThongSo', 'TaiLieu', 'GhiChu'].forEach(function (k) {
+      ['TenVi', 'TenZh', 'Nhom', 'KhuVuc', 'ViTri', 'TrangThai', 'HangSX', 'Model', 'SoSeri', 'NgaySD', 'ThongSo', 'TaiLieu', 'GhiChu',
+        'DienAp', 'NhaCungCap', 'HetBaoHanh', 'MaTaiSan'].forEach(function (k) {
         var v = f.elements[k] ? String(f.elements[k].value).trim() : '';
         p[k] = k === 'ThongSo' || k === 'TaiLieu' || k === 'GhiChu' ? v.replace(/\r\n/g, '\n') : v.replace(/\s+/g, ' ');
       });
       if (!p.TenVi && !p.TenZh) { bao(t('tb.canTen'), 'loi'); f.elements.TenVi.focus(); return false; }
       if (!p.Nhom) { bao(t('tb.canNhom'), 'loi'); f.elements.Nhom.focus(); return false; }
       if (p.NgaySD && !/^\d{4}-\d{2}-\d{2}$/.test(p.NgaySD)) { bao(loiChu({ code: 'SAI_DU_LIEU', them: { truong: 'NgaySD' } }), 'loi'); return false; }
+      if (p.HetBaoHanh && !/^\d{4}-\d{2}-\d{2}$/.test(p.HetBaoHanh)) { bao(loiChu({ code: 'SAI_DU_LIEU', them: { truong: 'HetBaoHanh' } }), 'loi'); return false; }
+      var loiSo = '';
+      [['CongSuat', 1e7, false], ['DongDien', 1e7, false], ['NamSX', 2100, true]].forEach(function (c) {
+        var v = gtO(f, c[0]), n = docSo(v);
+        if (v === '') { p[c[0]] = ''; return; }
+        if (!isFinite(n) || n < 0 || n > c[1] || (c[2] && (Math.floor(n) !== n || n < 1900))) { if (!loiSo) { loiSo = c[0]; f.elements[c[0]].focus(); } return; }
+        p[c[0]] = n;
+      });
+      if (loiSo) { bao(loiChu({ code: 'SAI_DU_LIEU', them: { truong: loiSo } }), 'loi'); return false; }
+      p.ThongSoKhac = docTsKhac(f);
+      if (p.ThongSoKhac === null) return false;
+      p.NguoiKiemTra = docChonNguoiKT($('[data-chon-nguoi]', f));
+      p.PhuTrach = '';
       var ma = gtO(f, 'Ma').toUpperCase();
       if (ma && !MA_MAY_RE.test(ma)) { bao(t('tb.maSai'), 'loi'); f.elements.Ma.focus(); return false; }
       if (ma && trungMaTrenMay(ma, p.ID)) { bao(t('tb.maTrung'), 'loi'); f.elements.Ma.focus(); return false; }
@@ -3321,6 +3662,14 @@ function moSuaMay(x) {
       });
     },
     moXong: function (f, dong) {
+      ganChonNguoiKT($('[data-chon-nguoi]', f));
+      var tsHop = $('#ts-khac', f);
+      $('[data-k="themTs"]', f).addEventListener('click', function () {
+        if ($$('[data-ts]', tsHop).length >= 30) return bao(t('loi.QUA_DAI'), 'loi');
+        tsHop.insertAdjacentHTML('beforeend', oTsKhac({}));
+        $('.ts-vi', tsHop.lastElementChild).focus();
+      });
+      tsHop.addEventListener('click', function (e) { var b = e.target.closest('[data-ts-xoa]'); if (b) b.closest('[data-ts]').remove(); });
       var ma = f.elements.Ma;
       function goiY() { if (moi) ma.placeholder = tp('tb.maGoiY', { ma: maTiepTheo(f.elements.Nhom.value || '') }); }
       goiY();
@@ -3341,6 +3690,29 @@ function moSuaMay(x) {
       });
     }
   });
+}
+
+/** Một dòng "thông số khác" trong biểu mẫu: tên Việt, tên Trung, giá trị, đơn vị. */
+function oTsKhac(o) {
+  o = o || {};
+  return '<div class="ts-sua" data-ts>' +
+    '<div class="hai-cot"><input class="o-nhap ts-vi" maxlength="60" placeholder="' + tp('tb.tsTenVi') + '" value="' + esc(o.vi || '') + '">' +
+    '<input class="o-nhap ts-zh" maxlength="60" lang="zh-CN" placeholder="' + tp('tb.tsTenZh') + '" value="' + esc(o.zh || '') + '"></div>' +
+    '<div class="ts-hang"><input class="o-nhap ts-gt" maxlength="60" placeholder="' + tp('tb.tsGt') + '" value="' + esc(o.gt == null ? '' : o.gt) + '">' +
+    '<input class="o-nhap ts-dv" maxlength="12" placeholder="' + tp('tb.tsDv') + '" value="' + esc(o.dv || '') + '">' +
+    '<button type="button" class="nut-dau vien nguy" data-ts-xoa aria-label="' + tp('tb.tsXoa') + '">' + ic('xoa') + '</button></div></div>';
+}
+/** Đọc các dòng thông số khác; dòng trống bỏ qua; có giá trị mà thiếu tên → báo lỗi, trả null. */
+function docTsKhac(f) {
+  var ra = [], loi = false;
+  $$('[data-ts]', f).forEach(function (c) {
+    var o = { vi: $('.ts-vi', c).value.trim().replace(/\s+/g, ' '), zh: $('.ts-zh', c).value.trim().replace(/\s+/g, ' '), gt: $('.ts-gt', c).value.trim(), dv: $('.ts-dv', c).value.trim() };
+    if (!o.vi && !o.zh && !o.gt && !o.dv) return;
+    if (!o.vi && !o.zh) { if (!loi) { loi = true; $('.ts-vi', c).focus(); } return; }
+    ra.push(o);
+  });
+  if (loi) { bao(t('tb.tsCanTen'), 'loi'); return null; }
+  return ra;
 }
 
 /* ---------- Mở từ tem (link ?tb= khi quét bằng camera iPhone) ---------- */
@@ -3713,7 +4085,7 @@ function hienKetQuaTem(kq) {
   ganGiaoTep(tr.el, kq.blob, kq.ten);
 }
 
-/* ---------- Nhập / xuất danh sách máy bằng Excel ---------- */
+/* ---------- Nhập / xuất danh sách máy (và linh kiện) bằng Excel ---------- */
 var COT_NHAP = [ // [trường, khoá chữ, tên cột khác người dùng hay đặt]
   ['Ma', 'tb.ma', ['ma', 'mamay', 'mathietbi', 'code', 'machinecode', '编码', '设备编号', '编号']],
   ['TenVi', 'tb.tenVi', ['ten', 'tenmay', 'tenthietbi', 'tentiengviet', 'tenvi', 'name', '越南语名称', '越文名称']],
@@ -3724,14 +4096,37 @@ var COT_NHAP = [ // [trường, khoá chữ, tên cột khác người dùng hay
   ['HangSX', 'tb.hangSX', ['hangsx', 'hang', 'hangsanxuat', 'nhasanxuat', 'brand', 'maker', '厂家', '品牌', '制造商', '生产厂家']],
   ['Model', 'tb.model', ['model', 'kieu', '型号', '规格型号']],
   ['SoSeri', 'tb.soSeri', ['soseri', 'seri', 'serial', 'sn', '序列号', '出厂编号']],
-  ['ThongSo', 'tb.thongSo', ['thongso', 'thongsokythuat', 'congsuat', '参数', '技术参数']],
+  ['ThongSo', 'tb.thongSo', ['thongso', 'thongsokythuat', '参数', '技术参数']],
   ['NgaySD', 'tb.ngaySD', ['ngaysd', 'ngaysudung', 'ngayduavaodung', 'ngaylapdat', 'namsudung', '启用日期', '投用日期', '使用日期']],
   ['TrangThai', 'tb.trangThai', ['trangthai', 'tinhtrang', 'status', '状态']],
-  ['PhuTrach', 'tb.phuTrach', ['phutrach', 'nguoiphutrach', '负责人']],
+  ['NguoiKiemTra', 'tb.nguoiKiemTra', ['nguoikiemtra', 'phutrach', 'nguoiphutrach', 'nguoitrucmay', 'inspector', '点检人', '负责人']],
+  ['CongSuat', 'tb.congSuat', ['congsuat', 'congsuatkw', 'power', 'kw', '功率', '额定功率']],
+  ['DienAp', 'tb.dienAp', ['dienap', 'dienapv', 'voltage', '电压', '额定电压']],
+  ['DongDien', 'tb.dongDien', ['dongdien', 'dongdinhmuc', 'current', '电流', '额定电流']],
+  ['NamSX', 'tb.namSX', ['namsx', 'namsanxuat', 'year', '出厂年份', '生产年份']],
+  ['NhaCungCap', 'tb.nhaCungCap', ['nhacungcap', 'ncc', 'supplier', 'vendor', '供应商']],
+  ['HetBaoHanh', 'tb.hetBaoHanh', ['hetbaohanh', 'baohanhden', 'baohanh', 'warranty', '保修到期', '保修期至']],
+  ['MaTaiSan', 'tb.maTaiSan', ['mataisan', 'sotaisan', 'asset', 'assetno', '资产编号']],
+  ['ThongSoKhac', 'tb.thongSoKhac', ['thongsokhac', 'other', '其他参数']],
   ['TaiLieu', 'tb.taiLieu', ['tailieu', 'link', '资料', '文档']],
   ['GhiChu', 'tb.ghiChu', ['ghichu', 'note', '备注']]
 ];
-var DAI_NHAP = { Ma: 30, TenVi: 100, TenZh: 100, ViTri: 100, HangSX: 60, Model: 60, SoSeri: 60, ThongSo: 1000, TaiLieu: 1000, GhiChu: 1000 };
+var DAI_NHAP = { Ma: 30, TenVi: 100, TenZh: 100, ViTri: 100, HangSX: 60, Model: 60, SoSeri: 60, ThongSo: 1000, TaiLieu: 1000, GhiChu: 1000, DienAp: 20, NhaCungCap: 100, MaTaiSan: 40 };
+// Trang "Linh kiện · 备件" trong cùng file (phiên 4b)
+var COT_NHAP_LK = [
+  ['MaMay', 'tb.ma', ['ma', 'mamay', 'mathietbi', 'machinecode', '设备编码', '设备编号']],
+  ['Loai', 'lk.loai', ['loai', 'loailinhkien', 'type', '备件类型', '类型']],
+  ['TenVi', 'lk.tenVi', ['ten', 'tenlinhkien', 'tentiengviet', 'tenvi', 'name', '越南语名称']],
+  ['TenZh', 'lk.tenZh', ['tentiengtrung', 'tenzh', '中文名称', '备件名称', '名称']],
+  ['MaLK', 'lk.maLK', ['malk', 'malinhkien', 'maquycach', 'quycach', 'partno', 'partnumber', '型号规格', '规格', '备件编号', '零件号']],
+  ['HangSX', 'tb.hangSX', ['hangsx', 'hang', 'brand', 'maker', '厂家', '品牌']],
+  ['SoLuong', 'lk.soLuong', ['soluong', 'sl', 'qty', 'quantity', '数量']],
+  ['DonVi', 'lk.donVi', ['donvi', 'dvt', 'unit', '单位']],
+  ['ViTri', 'lk.viTri', ['vitrilap', 'vitri', 'location', '安装位置', '位置']],
+  ['NhaCungCap', 'tb.nhaCungCap', ['nhacungcap', 'ncc', 'supplier', '供应商']],
+  ['GhiChu', 'tb.ghiChu', ['ghichu', 'note', '备注']]
+];
+var DAI_NHAP_LK = { TenVi: 100, TenZh: 100, MaLK: 60, HangSX: 60, ViTri: 100, NhaCungCap: 100, GhiChu: 500 };
 var TT_CHU = {
   CHAY: ['chay', 'dangchay', 'hoatdong', 'binhthuong', 'run', '运行', '运行中', '正常'],
   DUNG: ['dung', 'dangdung', 'ngung', 'hong', 'stop', '停机', '停'],
@@ -3739,16 +4134,18 @@ var TT_CHU = {
   DU_PHONG: ['duphong', 'backup', '备用'],
   THANH_LY: ['thanhly', 'baohong', '报废', '已报废']
 };
+var TAT_CA_CHU = ['tatca', 'all', '全部', '所有人'];
 function chuanTieuDe(s) { return boDau(s).replace(/[^a-z0-9㐀-鿿]/g, ''); }
 function tieuDeCot(k) { return TX[k][0] + ' · ' + TX[k][1]; }
-/** Dòng tiêu đề → { trường: số cột }. */
-function timCotNhap(h) {
+/** Dòng tiêu đề → { trường: số cột } theo bảng cột (COT_NHAP hoặc COT_NHAP_LK). */
+function timCotNhap(h, bangCot) {
   var ra = {};
+  bangCot = bangCot || COT_NHAP;
   (h || []).forEach(function (o, i) {
     String(o == null ? '' : o).split(/[·\/|()（）\n]+/).forEach(function (phan) {
       var k = chuanTieuDe(phan);
       if (!k) return;
-      COT_NHAP.forEach(function (c) {
+      bangCot.forEach(function (c) {
         if (ra[c[0]] !== undefined || Object.keys(ra).some(function (f) { return ra[f] === i; })) return;
         if (k === chuanTieuDe(TX[c[1]][0]) || k === chuanTieuDe(TX[c[1]][1]) || c[2].indexOf(k) >= 0) ra[c[0]] = i;
       });
@@ -3756,6 +4153,8 @@ function timCotNhap(h) {
   });
   return ra;
 }
+/** Trang linh kiện: có cột mã máy và ít nhất một cột riêng của linh kiện (mã / quy cách, số lượng, loại linh kiện). */
+function laTrangLk(m) { return m.MaMay !== undefined && (m.MaLK !== undefined || m.SoLuong !== undefined); }
 function timMaDm(nhom, v) {
   var k = chuanTieuDe(v), ra = null;
   D.DanhMuc.forEach(function (o) {
@@ -3780,69 +4179,187 @@ function docNgayNhap(v) {
   var d = new Date(s + 'T00:00:00Z');
   return isNaN(d) || d.toISOString().slice(0, 10) !== s || +s.slice(0, 4) < 1950 ? null : s;
 }
-/** Đọc sổ Excel → { dong: [{ so (số dòng Excel), d (payload), loi: [html], daCo }] } hoặc ném lỗi khi không thấy tiêu đề. */
-function phanTichNhap(wb) {
-  var trang = null, dau = -1, cot = null;
-  wb.trang.some(function (tr) {
-    for (var r = 0; r < Math.min(10, tr.dong.length); r++) {
-      var m = timCotNhap(tr.dong[r]);
-      if (Object.keys(m).length >= 2 && (m.TenVi !== undefined || m.TenZh !== undefined || m.Ma !== undefined)) { trang = tr; dau = r; cot = m; return true; }
-    }
-    return false;
+/** Số trong ô Excel: số, hoặc chữ "7,5 kW" / "14.2 A" (bỏ đơn vị ở cuối). NaN nếu không đọc được. */
+function docSoNhap(v) {
+  if (typeof v === 'number') return v;
+  return docSo(String(v).trim().replace(/\s*[a-zA-Zµ°/³²]+$/, ''));
+}
+/** Năm sản xuất: số 4 chữ số, hoặc lấy năm từ ngày. */
+function docNamNhap(v) {
+  if (typeof v === 'number' && v >= 1900 && v <= 2100 && Math.floor(v) === v) return v;
+  var n = docNgayNhap(v);
+  if (n) return +n.slice(0, 4);
+  var m = /^(\d{4})$/.exec(String(v).trim());
+  return m && +m[1] >= 1900 && +m[1] <= 2100 ? +m[1] : null;
+}
+/** "Tên · 中文: giá trị đơn vị; …" → [{vi, zh, gt, dv}] (hai chiều với chuThongSoKhac). */
+function docThongSoKhac(s) {
+  var ra = [];
+  String(s || '').split(/[;\n；]+/).forEach(function (phan) {
+    phan = phan.trim();
+    if (!phan) return;
+    var m = /^([^:：]+)[:：]\s*(.*)$/.exec(phan), ten = m ? m[1].trim() : phan, gt = m ? m[2].trim() : '';
+    var o = { vi: '', zh: '', gt: gt, dv: '' }, hai2 = ten.split(/\s+·\s+/);
+    if (hai2.length === 2) { o.vi = hai2[0].trim(); o.zh = hai2[1].trim(); } else if (coChuHanTb(ten)) o.zh = ten; else o.vi = ten;
+    var g = /^(\S*\d\S*)\s+(\S{1,12})$/.exec(gt);
+    if (g && !/\d/.test(g[2])) { o.gt = g[1]; o.dv = g[2]; }
+    ra.push(o);
   });
-  if (!trang) throw new LoiApi('NX_KHONG_COT');
-  var daThay = {}, ra = [];
-  for (var r = dau + 1; r < trang.dong.length; r++) {
+  return ra;
+}
+function coChuHanTb(s) { return /[㐀-鿿豈-﫿]/.test(String(s || '')); }
+function chuThongSoKhac(ds) {
+  return (Array.isArray(ds) ? ds : []).map(function (o) {
+    var ten = o.vi && o.zh && o.zh !== o.vi ? o.vi + ' · ' + o.zh : (o.vi || o.zh || '');
+    return ten + ': ' + [o.gt, o.dv].filter(function (x) { return x !== '' && x != null; }).join(' ');
+  }).join('; ');
+}
+/** Tìm trang máy và trang linh kiện trong sổ. */
+function timTrangNhap(wb) {
+  var may = null, lk = null;
+  wb.trang.forEach(function (tr) {
+    for (var r = 0; r < Math.min(10, tr.dong.length); r++) {
+      var mlk = timCotNhap(tr.dong[r], COT_NHAP_LK);
+      if (laTrangLk(mlk)) { if (!lk) lk = { tr: tr, dau: r, cot: mlk }; return; }
+      var m = timCotNhap(tr.dong[r], COT_NHAP);
+      if (Object.keys(m).length >= 2 && (m.TenVi !== undefined || m.TenZh !== undefined || m.Ma !== undefined)) { if (!may) may = { tr: tr, dau: r, cot: m }; return; }
+    }
+  });
+  return { may: may, lk: lk };
+}
+function chuONhap(v) { return typeof v === 'number' ? String(Math.round(v * 1e6) / 1e6) : typeof v === 'boolean' ? (v ? '1' : '0') : String(v).trim(); }
+function oTrong(v) { return v === '' || v == null || (typeof v === 'string' && !v.trim()); }
+/** Đọc sổ Excel → { trang, dong: [{ so (số dòng Excel), d (payload), loi: [html], daCo }], lk: {...} | null } hoặc ném lỗi khi không thấy tiêu đề. */
+function phanTichNhap(wb) {
+  var tim = timTrangNhap(wb);
+  if (!tim.may && !tim.lk) throw new LoiApi('NX_KHONG_COT');
+  var ra = [], daThay = {}, maMoi = {};
+  if (tim.may) {
+    var trang = tim.may.tr, cot = tim.may.cot;
+    for (var r = tim.may.dau + 1; r < trang.dong.length; r++) {
+      var h = trang.dong[r] || [], d = {}, loi = [], coGi = false;
+      Object.keys(cot).forEach(function (k) {
+        var v = h[cot[k]];
+        if (oTrong(v)) return;
+        coGi = true;
+        if (k === 'NgaySD' || k === 'HetBaoHanh') { var n = docNgayNhap(v); if (n) d[k] = n; else loi.push(t('nx.loiNgay', { v: v })); return; }
+        if (k === 'CongSuat' || k === 'DongDien') { var x = docSoNhap(v); if (isFinite(x) && x >= 0) d[k] = x; else loi.push(t('nx.loiSo', { cot: TX[k === 'CongSuat' ? 'tb.congSuat' : 'tb.dongDien'][0], v: v })); return; }
+        if (k === 'NamSX') { var y = docNamNhap(v); if (y) d.NamSX = y; else loi.push(t('nx.loiNam', { v: v })); return; }
+        var s = chuONhap(v);
+        if (k === 'Nhom' || k === 'KhuVuc') { var ma = timMaDm(k === 'Nhom' ? 'NHOM_TB' : 'KHU_VUC', s); if (ma) d[k] = ma; else loi.push(t(k === 'Nhom' ? 'nx.loiNhom' : 'nx.loiKhuVuc', { v: s })); return; }
+        if (k === 'TrangThai') {
+          var kt = chuanTieuDe(s), tt0 = TT_TB.filter(function (x) { return chuanTieuDe(x) === kt || TT_CHU[x].indexOf(kt) >= 0 || chuanTieuDe(TX['tt.' + x][0]) === kt || chuanTieuDe(TX['tt.' + x][1]) === kt; })[0];
+          if (tt0) d.TrangThai = tt0; else loi.push(t('nx.loiTrangThai', { v: s }));
+          return;
+        }
+        if (k === 'NguoiKiemTra') {
+          var ds = [], sai = [];
+          s.split(/[,;\n、，；]+/).forEach(function (ten) {
+            ten = ten.trim();
+            if (!ten) return;
+            if (TAT_CA_CHU.indexOf(chuanTieuDe(ten)) >= 0 || chuanTieuDe(ten) === chuanTieuDe(TX['kt.tatCa'][0])) return;
+            var u = timNguoiTen(ten);
+            if (u) { if (ds.indexOf(u) < 0) ds.push(u); } else sai.push(ten);
+          });
+          if (sai.length) loi.push(t('nx.loiNguoi', { v: sai.join(', ') })); else d.NguoiKiemTra = ds;
+          return;
+        }
+        if (k === 'ThongSoKhac') {
+          var ts = docThongSoKhac(s);
+          if (ts.length > 30 || ts.some(function (o) { return (o.vi || o.zh).length > 60 || String(o.gt).length > 60; })) loi.push(t('nx.loiDai', { cot: TX['tb.thongSoKhac'][0], n: 60 }));
+          else d.ThongSoKhac = ts;
+          return;
+        }
+        if (k === 'Ma') { s = s.toUpperCase(); if (!MA_MAY_RE.test(s)) { loi.push(t('nx.loiMa', { v: s })); return; } }
+        else if (k !== 'ThongSo' && k !== 'TaiLieu' && k !== 'GhiChu') s = s.replace(/\s+/g, ' ');
+        if (DAI_NHAP[k] && s.length > DAI_NHAP[k]) { loi.push(t('nx.loiDai', { cot: TX[COT_NHAP.filter(function (c) { return c[0] === k; })[0][1]][0], n: DAI_NHAP[k] })); return; }
+        d[k] = s;
+      });
+      if (!coGi) continue;
+      if (d.NguoiKiemTra) d.PhuTrach = '';
+      var daCo = d.Ma ? !!timMayMa(d.Ma) : false;
+      if (d.Ma) { if (daThay[d.Ma]) loi.push(t('nx.loiTrungFile', { v: d.Ma })); daThay[d.Ma] = 1; if (!loi.length) maMoi[d.Ma] = 1; }
+      if (!daCo && !d.TenVi && !d.TenZh) loi.push(t('nx.loiTen'));
+      ra.push({ so: r + 1, d: d, loi: loi, daCo: daCo });
+    }
+  }
+  return { trang: tim.may ? tim.may.tr.ten : '', dong: ra, lk: tim.lk ? phanTichLk(tim.lk, maMoi) : null };
+}
+/** Trang linh kiện → { trang, dong: [{ so, d, loi, daCo }] }. Mã máy phải có trên máy này hoặc là máy mới trong cùng file. */
+function phanTichLk(tim, maMoi) {
+  var trang = tim.tr, cot = tim.cot, ra = [], daThay = {}, daCoKhoa = {};
+  if (typeof dsLk === 'function') dsLk().forEach(function (x) { daCoKhoa[khoaLkMay(x.MaTB, x.MaLK, x.TenVi || x.TenZh, x.ViTri)] = 1; });
+  for (var r = tim.dau + 1; r < trang.dong.length; r++) {
     var h = trang.dong[r] || [], d = {}, loi = [], coGi = false;
     Object.keys(cot).forEach(function (k) {
       var v = h[cot[k]];
-      if (v === '' || v == null || (typeof v === 'string' && !v.trim())) return;
+      if (oTrong(v)) return;
       coGi = true;
-      if (k === 'NgaySD') { var n = docNgayNhap(v); if (n) d.NgaySD = n; else loi.push(t('nx.loiNgay', { v: v })); return; }
-      var s = typeof v === 'number' ? String(Math.round(v * 1e6) / 1e6) : typeof v === 'boolean' ? (v ? '1' : '0') : String(v).trim();
-      if (k === 'Nhom' || k === 'KhuVuc') { var ma = timMaDm(k === 'Nhom' ? 'NHOM_TB' : 'KHU_VUC', s); if (ma) d[k] = ma; else loi.push(t(k === 'Nhom' ? 'nx.loiNhom' : 'nx.loiKhuVuc', { v: s })); return; }
-      if (k === 'TrangThai') {
-        var kt = chuanTieuDe(s), tt0 = TT_TB.filter(function (x) { return chuanTieuDe(x) === kt || TT_CHU[x].indexOf(kt) >= 0 || chuanTieuDe(TX['tt.' + x][0]) === kt || chuanTieuDe(TX['tt.' + x][1]) === kt; })[0];
-        if (tt0) d.TrangThai = tt0; else loi.push(t('nx.loiTrangThai', { v: s }));
-        return;
-      }
-      if (k === 'PhuTrach') { var u = timNguoiTen(s); if (u) d.PhuTrach = u; else loi.push(t('nx.loiNguoi', { v: s })); return; }
-      if (k === 'Ma') { s = s.toUpperCase(); if (!MA_MAY_RE.test(s)) { loi.push(t('nx.loiMa', { v: s })); return; } }
-      else if (k !== 'ThongSo' && k !== 'TaiLieu' && k !== 'GhiChu') s = s.replace(/\s+/g, ' ');
-      if (DAI_NHAP[k] && s.length > DAI_NHAP[k]) { loi.push(t('nx.loiDai', { cot: TX[COT_NHAP.filter(function (c) { return c[0] === k; })[0][1]][0], n: DAI_NHAP[k] })); return; }
+      if (k === 'SoLuong') { var n = docSoNhap(v); if (isFinite(n) && n >= 0) d.SoLuong = n; else loi.push(t('nx.loiSo', { cot: TX['lk.soLuong'][0], v: v })); return; }
+      var s = chuONhap(v).replace(/\s+/g, k === 'GhiChu' ? ' ' : ' ');
+      if (k === 'Loai' || k === 'DonVi') { var ma = timMaDm(k === 'Loai' ? 'LOAI_LK' : 'DON_VI', s); if (ma) d[k] = ma; else loi.push(t(k === 'Loai' ? 'nx.loiLoaiLk' : 'nx.loiDonVi', { v: s })); return; }
+      if (k === 'MaMay') { d.MaMay = s.toUpperCase(); return; }
+      if (DAI_NHAP_LK[k] && s.length > DAI_NHAP_LK[k]) { loi.push(t('nx.loiDai', { cot: TX[COT_NHAP_LK.filter(function (c) { return c[0] === k; })[0][1]][0], n: DAI_NHAP_LK[k] })); return; }
       d[k] = s;
     });
     if (!coGi) continue;
-    var daCo = d.Ma ? !!timMayMa(d.Ma) : false;
-    if (d.Ma) { if (daThay[d.Ma]) loi.push(t('nx.loiTrungFile', { v: d.Ma })); daThay[d.Ma] = 1; }
-    if (!daCo && !d.TenVi && !d.TenZh) loi.push(t('nx.loiTen'));
-    ra.push({ so: r + 1, d: d, loi: loi, daCo: daCo });
+    var may = d.MaMay ? timMayMa(d.MaMay) : null;
+    if (!d.MaMay) loi.push(t('nx.loiThieuMaMay'));
+    else if (!may && !maMoi[d.MaMay]) loi.push(t('nx.loiKhongCoMay', { v: d.MaMay }));
+    var ten = d.TenVi || d.TenZh || (d.Loai ? String(tenDmPhang(bangDmPhang(), 'LOAI_LK', d.Loai, true)) : '');
+    if (!d.MaLK && !ten) loi.push(t('nx.loiTen'));
+    var k0 = (may ? may.ID : 'moi:' + d.MaMay) + '|' + (chuanMaLkTb(d.MaLK) || 'ten:' + chuanMaLkTb(ten)) + '|' + chuanMaLkTb(d.ViTri);
+    if (!loi.length && daThay[k0]) loi.push(t('nx.loiTrungFile', { v: d.MaLK || ten }));
+    daThay[k0] = 1;
+    ra.push({ so: r + 1, d: d, loi: loi, daCo: !!(may && daCoKhoa[khoaLkMay(may.ID, d.MaLK, ten, d.ViTri)]) });
   }
   return { trang: trang.ten, dong: ra };
 }
+function chuanMaLkTb(s) { return boDau(String(s == null ? '' : s)).replace(/[\s\-._\/·,;:()（）]+/g, ''); }
+function khoaLkMay(idMay, maLK, ten, viTri) { return idMay + '|' + (chuanMaLkTb(maLK) || 'ten:' + chuanMaLkTb(ten)) + '|' + chuanMaLkTb(viTri); }
 function bangMayExcel(ds) {
   var dm = bangDmPhang();
   var dong = [COT_NHAP.map(function (c) { return tieuDeCot(c[1]); })].concat(ds.map(function (x) {
     return COT_NHAP.map(function (c) {
       var k = c[0], v = x[k];
+      if (k === 'NguoiKiemTra') { var kt = dsKiemTraGoc(x); return kt.length ? kt.map(function (id) { var u = D.NguoiDung.get(id); return u ? u.Ten : id; }).join(', ') : TX['kt.tatCa'][0]; }
       if (v === '' || v == null) return '';
       if (k === 'Nhom') return tenDmPhang(dm, 'NHOM_TB', v, true);
       if (k === 'KhuVuc') return tenDmPhang(dm, 'KHU_VUC', v, true);
       if (k === 'TrangThai') return TX['tt.' + v] ? TX['tt.' + v][0] : v;
-      if (k === 'PhuTrach') { var u = D.NguoiDung.get(v); return u ? u.Ten : v; }
+      if (k === 'ThongSoKhac') return chuThongSoKhac(v);
+      if (k === 'CongSuat' || k === 'DongDien' || k === 'NamSX') return isFinite(v) ? Number(v) : String(v);
       return String(v);
     });
   }));
-  return { ten: 'Thiết bị · 设备', dong: dong, rong: [14, 28, 20, 18, 16, 18, 14, 14, 14, 30, 16, 12, 18, 30, 30], dauDam: true };
+  return { ten: 'Thiết bị · 设备', dong: dong, rong: [14, 28, 20, 18, 16, 18, 14, 14, 14, 30, 16, 12, 24, 12, 12, 12, 10, 20, 14, 14, 40, 30, 30], dauDam: true };
+}
+/** Trang "Linh kiện · 备件" của file mẫu / danh sách máy. */
+function bangLkExcel(ds) {
+  var dm = bangDmPhang();
+  var dong = [COT_NHAP_LK.map(function (c) { return tieuDeCot(c[1]); })].concat(ds.map(function (x) {
+    var m = D.ThietBi.get(x.MaTB);
+    return COT_NHAP_LK.map(function (c) {
+      var k = c[0], v = k === 'MaMay' ? (m ? m.Ma : '') : x[k];
+      if (v === '' || v == null) return '';
+      if (k === 'Loai') return tenDmPhang(dm, 'LOAI_LK', v, true);
+      if (k === 'DonVi') return tenDmPhang(dm, 'DON_VI', v, true);
+      if (k === 'SoLuong') return Number(v);
+      return String(v);
+    });
+  }));
+  return { ten: 'Linh kiện · 备件', dong: dong, rong: [14, 14, 24, 18, 22, 14, 10, 10, 20, 20, 30], dauDam: true };
 }
 function huongDanExcel() {
   var r = [[tieuDeCot('nx.cot'), tieuDeCot('nx.cachDien')]];
   [['tb.ma', 'nx.hdMa'], ['tb.tenVi', 'nx.hdTen'], ['tb.tenZh', 'nx.hdTen'], ['tb.nhom', 'nx.hdDm'], ['tb.khuVuc', 'nx.hdDm'],
-    ['tb.ngaySD', 'nx.hdNgay'], ['tb.trangThai', 'nx.hdTrangThai'], ['tb.phuTrach', 'nx.hdNguoi']].forEach(function (x) { r.push([tieuDeCot(x[0]), tieuDeCot(x[1])]); });
-  r.push([], [tieuDeCot('tb.nhom'), '', ''], [tieuDeCot('dm.ma'), tieuDeCot('dm.tenVi'), tieuDeCot('dm.tenZh')]);
-  dsDanhMuc('NHOM_TB').forEach(function (o) { r.push([o.Ma, o.TenVi, o.TenZh]); });
-  r.push([], [tieuDeCot('tb.khuVuc'), '', ''], [tieuDeCot('dm.ma'), tieuDeCot('dm.tenVi'), tieuDeCot('dm.tenZh')]);
-  dsDanhMuc('KHU_VUC').forEach(function (o) { r.push([o.Ma, o.TenVi, o.TenZh]); });
+    ['tb.ngaySD', 'nx.hdNgay'], ['tb.trangThai', 'nx.hdTrangThai'], ['tb.nguoiKiemTra', 'nx.hdNguoiKT'],
+    ['tb.congSuat', 'nx.hdSo'], ['tb.dongDien', 'nx.hdSo'], ['tb.namSX', 'nx.hdNam'], ['tb.hetBaoHanh', 'nx.hdNgay'], ['tb.thongSoKhac', 'nx.hdTsKhac'],
+    ['nx.trangLk', 'nx.hdTrangLk'], ['lk.maLK', 'nx.hdMaLk'], ['lk.loai', 'nx.hdDm'], ['lk.donVi', 'nx.hdDm']].forEach(function (x) { r.push([tieuDeCot(x[0]), tieuDeCot(x[1])]); });
+  [['NHOM_TB', 'tb.nhom'], ['KHU_VUC', 'tb.khuVuc'], ['LOAI_LK', 'lk.loai'], ['DON_VI', 'lk.donVi']].forEach(function (g) {
+    r.push([], [tieuDeCot(g[1]), '', ''], [tieuDeCot('dm.ma'), tieuDeCot('dm.tenVi'), tieuDeCot('dm.tenZh')]);
+    dsDanhMuc(g[0]).forEach(function (o) { r.push([o.Ma, o.TenVi, o.TenZh]); });
+  });
   return { ten: 'Hướng dẫn · 说明', dong: r, rong: [30, 70, 24], dauDam: true };
 }
 var NX = { kq: null, ten: '', capNhat: false, xong: null };
@@ -3853,7 +4370,7 @@ man('nhapexcel', {
       '<div class="the"><div class="dong-chinh">' + t('nx.buoc1') + '</div>' +
       '<div class="hang-nut ba"><button class="nut phu tang" data-act="taiMauExcel">' + ic('tai', 'ic-nho') + t('nx.taiMau') + '</button>' +
       (dsMay().length ? '<button class="nut phu tang" data-act="taiDsMay">' + ic('bang', 'ic-nho') + t('nx.taiDs') + '</button>' : '') + '</div>' +
-      '<p class="muc-ghi">' + t('nx.mauGhi') + '</p></div>' +
+      '<p class="muc-ghi">' + t('nx.mauGhi') + '</p><p class="muc-ghi">' + t('nx.lkGhi') + '</p></div>' +
       '<div class="the"><div class="dong-chinh">' + t('nx.buoc2') + '</div>' +
       '<label class="nut"><input type="file" class="an-tep" id="nx-tep" accept=".xlsx,.csv,.txt,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv">' + ic('bang', 'ic-nho') + t('nx.chonTep') + '</label>' +
       '<p class="muc-ghi">' + t('qt.canMang') + '</p></div>' +
@@ -3874,36 +4391,48 @@ function docTepNhap(f) {
     hop.innerHTML = '<div class="the"><div class="dong-chinh" style="color:var(--loi)">' + loiChu(e instanceof LoiApi ? e : new LoiApi('EXCEL_HONG')) + '</div></div>';
   });
 }
+function chiaNhap(kq) {
+  var loi = kq.dong.filter(function (r) { return r.loi.length; }), tot = kq.dong.filter(function (r) { return !r.loi.length; });
+  return { loi: loi, tot: tot, moi: tot.filter(function (r) { return !r.daCo; }), daCo: tot.filter(function (r) { return r.daCo; }) };
+}
+function dongLoiNhap(ds) {
+  return '<div class="nhom">' + ds.slice(0, 50).map(function (r) {
+    return '<div class="dong"><span class="dong-chu"><span class="dong-chinh so">' + t('nx.dong', { n: r.so }) + '</span><span class="dong-phu" style="display:block">' + r.loi.join('<br>') + '</span></span></div>';
+  }).join('') + '</div>' + (ds.length > 50 ? '<p class="muc-ghi">…</p>' : '');
+}
 function veKetQuaNhap() {
   var hop = $('#nx-kq'), kq = NX.kq;
   if (!hop || !kq) return;
-  var loi = kq.dong.filter(function (r) { return r.loi.length; }), tot = kq.dong.filter(function (r) { return !r.loi.length; });
-  var moi = tot.filter(function (r) { return !r.daCo; }), daCo = tot.filter(function (r) { return r.daCo; });
-  var gui = moi.length + (NX.capNhat ? daCo.length : 0);
+  var a = chiaNhap(kq), b = kq.lk ? chiaNhap(kq.lk) : null;
+  var gui = a.moi.length + (NX.capNhat ? a.daCo.length : 0), guiLk = b ? b.moi.length + (NX.capNhat ? b.daCo.length : 0) : 0;
+  var coDaCo = a.daCo.length || (b && b.daCo.length);
   hop.innerHTML = '<div class="the">' +
     '<div class="dong-chinh">' + esc(NX.ten) + '</div>' +
-    '<div class="cac-hh"><span class="hh">' + t('nx.tongDong', { n: kq.dong.length }) + '</span><span class="hh hh-tot">' + t('nx.moi', { n: moi.length }) + '</span>' +
-    (daCo.length ? '<span class="hh hh-chinh">' + t('nx.daCo', { n: daCo.length }) + '</span>' : '') +
-    (loi.length ? '<span class="hh hh-loi">' + t('nx.loiDong', { n: loi.length }) + '</span>' : '') + '</div>' +
-    (daCo.length ? oBat('nx-capnhat', 'nx.capNhat', NX.capNhat, 'nx.capNhatGhi') : '') +
-    (loi.length ? '<p class="muc-ghi">' + t('nx.boDongLoi') + '</p>' : '') +
-    '<button class="nut rong" data-act="nhapExcel"' + (gui ? '' : ' disabled') + '>' + ic('them', 'ic-nho') + t('nx.nhap', { n: gui }) + '</button></div>' +
-    (loi.length ? '<section class="muc"><h2 class="muc-tieu-de">' + t('nx.dsLoi') + '</h2><div class="nhom">' + loi.slice(0, 50).map(function (r) {
-      return '<div class="dong"><span class="dong-chu"><span class="dong-chinh so">' + t('nx.dong', { n: r.so }) + '</span><span class="dong-phu" style="display:block">' + r.loi.join('<br>') + '</span></span></div>';
-    }).join('') + '</div>' + (loi.length > 50 ? '<p class="muc-ghi">…</p>' : '') + '</section>' : '') +
-    (tot.length ? '<section class="muc"><h2 class="muc-tieu-de">' + t('nx.xemTruoc') + '</h2><div class="nhom">' + tot.slice(0, 10).map(function (r) {
+    (kq.dong.length || !b ? '<div class="cac-hh"><span class="hh">' + t('nx.tongDong', { n: kq.dong.length }) + '</span><span class="hh hh-tot">' + t('nx.moi', { n: a.moi.length }) + '</span>' +
+      (a.daCo.length ? '<span class="hh hh-chinh">' + t('nx.daCo', { n: a.daCo.length }) + '</span>' : '') +
+      (a.loi.length ? '<span class="hh hh-loi">' + t('nx.loiDong', { n: a.loi.length }) + '</span>' : '') + '</div>' : '') +
+    (b ? '<div class="dong-phu">' + t('nx.trangLk') + '</div><div class="cac-hh" id="nx-lk-dem"><span class="hh">' + t('nx.tongDong', { n: kq.lk.dong.length }) + '</span><span class="hh hh-tot">' + t('nx.lkMoi', { n: b.moi.length }) + '</span>' +
+      (b.daCo.length ? '<span class="hh hh-chinh">' + t('nx.lkDaCo', { n: b.daCo.length }) + '</span>' : '') +
+      (b.loi.length ? '<span class="hh hh-loi">' + t('nx.loiDong', { n: b.loi.length }) + '</span>' : '') + '</div>' : '') +
+    (coDaCo ? oBat('nx-capnhat', 'nx.capNhat', NX.capNhat, 'nx.capNhatGhi') : '') +
+    (a.loi.length || (b && b.loi.length) ? '<p class="muc-ghi">' + t('nx.boDongLoi') + '</p>' : '') +
+    '<button class="nut rong" data-act="nhapExcel"' + (gui + guiLk ? '' : ' disabled') + '>' + ic('them', 'ic-nho') + (guiLk ? t('nx.nhapCaLk', { n: gui, m: guiLk }) : t('nx.nhap', { n: gui })) + '</button></div>' +
+    (a.loi.length ? '<section class="muc"><h2 class="muc-tieu-de">' + t('nx.dsLoi') + '</h2>' + dongLoiNhap(a.loi) + '</section>' : '') +
+    (b && b.loi.length ? '<section class="muc"><h2 class="muc-tieu-de">' + t('nx.dsLoiLk') + '</h2>' + dongLoiNhap(b.loi) + '</section>' : '') +
+    (a.tot.length ? '<section class="muc"><h2 class="muc-tieu-de">' + t('nx.xemTruoc') + '</h2><div class="nhom">' + a.tot.slice(0, 10).map(function (r) {
       var d = r.d;
       return '<div class="dong"><span class="dong-chu"><span class="dong-chinh">' + (d.Ma ? '<span class="ma">' + esc(d.Ma) + '</span> ' : '') + tt(d.TenVi, d.TenZh) + '</span>' +
         '<span class="dong-phu gon" style="display:block">' + [d.Nhom ? tenDanhMuc('NHOM_TB', d.Nhom) : '', d.KhuVuc ? tenDanhMuc('KHU_VUC', d.KhuVuc) : ''].filter(Boolean).join(' · ') + '</span>' +
         (r.daCo ? '<span class="cac-hh"><span class="hh hh-chinh">' + t('nx.laMayCu') + '</span></span>' : '') + '</span></div>';
     }).join('') + '</div></section>' : '');
-  var b = $('#nx-capnhat', hop);
-  if (b) b.addEventListener('change', function () { NX.capNhat = b.checked; veKetQuaNhap(); });
+  var bt = $('#nx-capnhat', hop);
+  if (bt) bt.addEventListener('change', function () { NX.capNhat = bt.checked; veKetQuaNhap(); });
 }
 function veXongNhap() {
   var hop = $('#nx-kq'), x = NX.xong;
   if (!hop || !x) return;
   hop.innerHTML = '<div class="the"><div class="dong-chinh" style="color:var(--tot)">' + t('nx.xong', { them: x.them, sua: x.sua, boQua: x.boQua }) + '</div>' +
+    (x.lk ? '<div class="dong-chinh" style="color:var(--tot)">' + t('nx.xongLk', { them: x.lk.them, sua: x.lk.sua, boQua: x.lk.boQua }) + '</div>' : '') +
     (x.chuaDich ? '<div class="dong-phu">' + t('nx.chuaDich', { n: x.chuaDich }) + '</div>' : '') +
     (x.loi.length ? '<div class="dong-phu" style="color:var(--loi)">' + x.loi.map(function (l) { return t('nx.dong', { n: l.so }) + ': ' + l.loi; }).join('<br>') + '</div>' : '') +
     '<a class="nut" href="#/thietbi">' + ic('may', 'ic-nho') + t('man.thietbi') + '</a></div>';
@@ -3911,9 +4440,10 @@ function veXongNhap() {
 HANH.nhapExcel = function (b) {
   if (!NX.kq || !coMangHoacBao()) return;
   var ds = NX.kq.dong.filter(function (r) { return !r.loi.length && (!r.daCo || NX.capNhat); });
-  if (!ds.length) return;
+  var dsLk0 = NX.kq.lk ? NX.kq.lk.dong.filter(function (r) { return !r.loi.length && (!r.daCo || NX.capNhat); }) : [];
+  if (!ds.length && !dsLk0.length) return;
   b.disabled = true;
-  var tong = { them: 0, sua: 0, boQua: 0, chuaDich: 0, loi: [] }, i = 0, co = 50;
+  var tong = { them: 0, sua: 0, boQua: 0, chuaDich: 0, loi: [], lk: dsLk0.length ? { them: 0, sua: 0, boQua: 0 } : null }, i = 0, j = 0, co = 50;
   function tiep() {
     if (i >= ds.length) return Promise.resolve();
     var phan = ds.slice(i, i + co);
@@ -3925,7 +4455,19 @@ HANH.nhapExcel = function (b) {
       return Promise.all((d.dong || []).map(function (x) { return luuDongMay('ThietBi', x); }));
     }).then(function () { i += co; return tiep(); });
   }
-  tiep().then(function () {
+  function tiepLk() {
+    if (j >= dsLk0.length) return Promise.resolve();
+    var phan = dsLk0.slice(j, j + co);
+    b.innerHTML = '<span class="quay"></span>' + t('nx.dangNhapLk', { i: Math.min(j + co, dsLk0.length), n: dsLk0.length });
+    return goiThang('nhapLinhKienExcel', { dong: phan.map(function (r) { return r.d; }), capNhat: NX.capNhat ? 1 : 0, dongDau: 0 }, { ghi: true, lau: true }).then(function (d) {
+      d = d || {};
+      ['them', 'sua', 'boQua'].forEach(function (k) { tong.lk[k] += Number(d[k]) || 0; });
+      tong.chuaDich += Number(d.chuaDich) || 0;
+      (d.loi || []).forEach(function (l) { tong.loi.push({ so: (phan[l.dong] ? phan[l.dong].so : '?') + ' (' + TX['nx.trangLkNgan'][0] + ')', loi: loiChu(new LoiApi(l.code, '', { truong: l.truong })) }); });
+      return Promise.all((d.dong || []).map(function (x) { return luuDongMay('LinhKien', x); }));
+    }).then(function () { j += co; return tiepLk(); });
+  }
+  tiep().then(tiepLk).then(function () {
     NX.kq = null; NX.xong = tong;
     veXongNhap();
     bao(t('nx.xong', { them: tong.them, sua: tong.sua, boQua: tong.boQua }), 'tot', 4000);
@@ -3933,15 +4475,416 @@ HANH.nhapExcel = function (b) {
   }, function (e) {
     baoLoi(e);
     b.disabled = false;
-    if (i) { NX.kq.dong = NX.kq.dong.filter(function (r) { return ds.indexOf(r) < 0 || ds.indexOf(r) >= i; }); veKetQuaNhap(); }
-    else b.innerHTML = ic('them', 'ic-nho') + t('nx.nhap', { n: ds.length });
+    if (i) { NX.kq.dong = NX.kq.dong.filter(function (r) { return ds.indexOf(r) < 0 || ds.indexOf(r) >= i; }); }
+    if (j && NX.kq.lk) { NX.kq.lk.dong = NX.kq.lk.dong.filter(function (r) { return dsLk0.indexOf(r) < 0 || dsLk0.indexOf(r) >= j; }); }
+    veKetQuaNhap();
   });
 };
 HANH.taiMauExcel = function () {
-  giaoTep(taoExcel([bangMayExcel([]), huongDanExcel()]), 'mau-nhap-may.xlsx', 'nx.mauGhi');
+  giaoTep(taoExcel([bangMayExcel([]), bangLkExcel([]), huongDanExcel()]), 'mau-nhap-may.xlsx', 'nx.mauGhi');
 };
 HANH.taiDsMay = function () {
-  giaoTep(taoExcel([bangMayExcel(dsMay().sort(soSanhMay)), huongDanExcel()]), 'danh-sach-may-' + ngayTep() + '.xlsx', 'nx.dsGhi');
+  var ds = dsMay().sort(soSanhMay), lk = typeof dsLk === 'function' ? dsLk().filter(function (x) { return D.ThietBi.get(x.MaTB); }) : [];
+  lk.sort(function (a, b) { return soSanhMay(D.ThietBi.get(a.MaTB), D.ThietBi.get(b.MaTB)) || String(a.MaLK || '').localeCompare(String(b.MaLK || '')); });
+  giaoTep(taoExcel([bangMayExcel(ds), bangLkExcel(lk), huongDanExcel()]), 'danh-sach-may-' + ngayTep() + '.xlsx', 'nx.dsGhi');
+};
+
+/* =====================================================================
+ * linhkien.js — Linh kiện thay thế · 备件 (phiên 4b)
+ *   Trong hồ sơ máy: danh sách linh kiện (mã chữ to + nút chép), thêm / sửa / xoá (qua hàng chờ, làm được khi mất mạng),
+ *   ảnh tem nhãn linh kiện, chép cả danh sách từ máy khác (máy cùng model).
+ *   Màn Tra linh kiện: tìm theo mã hoặc tên (bỏ dấu, bỏ khoảng trắng / gạch / chấm), gom theo mã, các máy dùng, xuất Excel.
+ * Chỉ là thông tin để mua đúng — không có tồn kho, nhập, xuất. LinhKien.MaTB là ID máy.
+ * ===================================================================== */
+NHAN_VIEC.luuLinhKien = function (it) {
+  var p = it.payload || {}, x = D.LinhKien.get(p.ID), m = D.ThietBi.get(p.MaTB || (x && x.MaTB));
+  var ma = p.MaLK || (x && x.MaLK) || p.TenVi || (x && x.TenVi) || '';
+  return t(p.xoa ? 'viec.xoaLinhKien' : 'viec.luuLinhKien') + (m ? ' <span class="ma">' + esc(m.Ma) + '</span>' : '') + (ma ? ' ' + esc(ma) : '');
+};
+NHAN_VIEC.nhapLinhKienExcel = 'viec.nhapLinhKienExcel';
+SAU_GUI.luuLinhKien = function (d) { if (d && d.linhKien) luuDongMay('LinhKien', d.linhKien).then(veLaiLk); };
+function veLaiLk() {
+  if (S.manHienTai === 'linhkien') veDsLk();
+  else if (S.manHienTai === 'hoso') veMan({ giuCuon: true });
+}
+
+/* ---------- Dữ liệu ---------- */
+function dsLk(loc) {
+  var ds = [];
+  D.LinhKien.forEach(function (x) { if (Number(x.Xoa) !== 1 && (!loc || loc(x))) ds.push(x); });
+  return ds;
+}
+/** So khớp mã: bỏ dấu, khoảng trắng, gạch, chấm; không phân biệt hoa thường ("6205 2rs" khớp "6205-2RS"). */
+function chuanMaLk(s) { return boDau(s).replace(/[\s\-._\/·,;:()（）]+/g, ''); }
+function thuTuLoai(ma) { var o = null; D.DanhMuc.forEach(function (x) { if (!o && x.Nhom === 'LOAI_LK' && x.Ma === ma && Number(x.Xoa) !== 1) o = x; }); return o ? Number(o.ThuTu) || 0 : 9999; }
+function soSanhLk(a, b) {
+  return thuTuLoai(a.Loai) - thuTuLoai(b.Loai) || String(a.MaLK || a.TenVi || '').localeCompare(String(b.MaLK || b.TenVi || ''), 'vi', { numeric: true });
+}
+function lkCuaMay(id) { return dsLk(function (x) { return x.MaTB === id; }).sort(soSanhLk); }
+function tenLk(x) { return tt(x.TenVi, x.TenZh); }
+/** "Loại · tên" — bỏ tên khi trùng tên loại (ví dụ loại Ổ bi, tên Ổ bi). */
+function loaiVaTenLk(x) {
+  var o = null;
+  if (x.Loai) D.DanhMuc.forEach(function (d) { if (!o && d.Nhom === 'LOAI_LK' && d.Ma === x.Loai && Number(d.Xoa) !== 1) o = d; });
+  var trung = o && boDau(x.TenVi || x.TenZh) === boDau(x.TenVi ? o.TenVi : o.TenZh);
+  return [o ? tt(o.TenVi, o.TenZh) : '', trung ? '' : tenLk(x)].filter(Boolean).join(' · ');
+}
+function slLk(x) {
+  if (x.SoLuong === '' || x.SoLuong == null) return '';
+  return '<span class="so">' + so(x.SoLuong) + '</span> ' + (x.DonVi ? tenDanhMuc('DON_VI', x.DonVi) : '');
+}
+/** Số máy khác cùng dùng mã linh kiện này. */
+function soMayKhacCungMa(x) {
+  var k = chuanMaLk(x.MaLK);
+  if (!k) return 0;
+  var may = {};
+  D.LinhKien.forEach(function (o) { if (Number(o.Xoa) !== 1 && o.MaTB !== x.MaTB && chuanMaLk(o.MaLK) === k && D.ThietBi.get(o.MaTB)) may[o.MaTB] = 1; });
+  return Object.keys(may).length;
+}
+function lkDuocXoa(x) {
+  return coQuyen(2) || (x.TaoBoi === S.uid && String(x.TaoLuc || homNay()).slice(0, 10) === homNay());
+}
+function soMaLkChu() {
+  var ma = {};
+  D.LinhKien.forEach(function (x) { if (Number(x.Xoa) !== 1) ma[chuanMaLk(x.MaLK) || ('#' + x.ID)] = 1; });
+  return t('lk.soMa', { n: Object.keys(ma).length });
+}
+
+/* ---------- Trong hồ sơ máy ---------- */
+function lkHoSo(m) {
+  if (!coQuyen(3)) return '';
+  var ds = lkCuaMay(m.ID);
+  return '<section class="muc" id="muc-lk"><h2 class="muc-tieu-de">' + t('lk.tieuDe') + ' <span class="so">' + ds.length + '</span></h2>' +
+    (ds.length ? '<div class="nhom">' + ds.map(dongLkHoSo).join('') + '</div>' : '<p class="muc-ghi">' + t('lk.mayChuaCo') + '</p>') +
+    '<div class="hang-nut"><button class="nut phu tang" data-act="themLk" data-may="' + esc(m.ID) + '">' + ic('them', 'ic-nho') + t('lk.them') + '</button>' +
+    '<button class="nut phu tang" data-act="chepLkTu" data-may="' + esc(m.ID) + '">' + ic('chep', 'ic-nho') + t('lk.chepTu') + '</button></div>' +
+    '</section>';
+}
+function dongLkHoSo(x) {
+  var a = anhCua('LinhKien', x)[0], khac = soMayKhacCungMa(x), hh = [];
+  if (x._cho) { var v = viecDangCho(x); hh.push('<span class="hh ' + (v && v.trangThai === 'loi' ? 'hh-loi">' + t('hc.loi') : 'hh-canh">' + t('choGui')) + '</span>'); }
+  if (khac) hh.push('<a class="hh hh-chinh" href="#/linhkien/' + encodeURIComponent(x.MaLK) + '">' + t('lk.mayKhac', { n: khac }) + '</a>');
+  var phu = [slLk(x), x.ViTri ? esc(x.ViTri) : '', x.HangSX ? esc(x.HangSX) : ''].filter(Boolean).join(' · ');
+  return '<div class="dong dong-lk">' +
+    (a ? '<button class="lk-anh" data-act="xemAnhLk" data-id="' + esc(x.ID) + '" aria-label="' + tp('tb.anh') + '">' + theAnh(a, 160) + '</button>' : '') +
+    '<div class="dong-chu"><button class="lk-than" data-act="suaLk" data-id="' + esc(x.ID) + '">' +
+    '<span class="dong-phu gon" style="display:block">' + loaiVaTenLk(x) + '</span>' +
+    (x.MaLK ? '<span class="ma-lk">' + esc(x.MaLK) + '</span>' : '<span class="dong-chinh" style="display:block">' + tenLk(x) + '</span>') +
+    (phu ? '<span class="dong-phu gon" style="display:block">' + phu + '</span>' : '') + '</button>' +
+    (hh.length ? '<div class="cac-hh">' + hh.join('') + '</div>' : '') + '</div>' +
+    (x.MaLK ? '<button class="nut-dau vien" data-act="chepMaLk" data-ma="' + esc(x.MaLK) + '" aria-label="' + tp('lk.chepMa') + '">' + ic('chep') + '</button>' : '') +
+    '</div>';
+}
+HANH.chepMaLk = function (b) { chepChu(b.getAttribute('data-ma')); };
+HANH.themLk = function (b) { moSuaLk(null, b.getAttribute('data-may')); };
+HANH.suaLk = function (b) { var x = D.LinhKien.get(b.getAttribute('data-id')); if (x) moSuaLk(x, x.MaTB); };
+HANH.xemAnhLk = function (b) {
+  var x = D.LinhKien.get(b.getAttribute('data-id'));
+  if (!x) return;
+  xemAnh(anhCua('LinhKien', x), 0, { bo: xoaAnhLkFn(x) });
+};
+function xoaAnhLkFn(x) {
+  return function (a) {
+    if (!coMangHoacBao()) return false;
+    return goiThang('boAnh', { bang: 'LinhKien', ID: x.ID, anhId: a.id }, { ghi: true }).then(function (d) {
+      return luuDongMay('LinhKien', d && d.dong).then(function () { bao(t('daXoa'), 'tot'); veLaiLk(); return true; });
+    }, function (e) { baoLoi(e); return false; });
+  };
+}
+
+/* ---------- Thêm / sửa một linh kiện (cấp 1–3; lưu trên máy rồi gửi, được khi mất mạng) ---------- */
+function moSuaLk(x, idMay) {
+  var moi = !x, m = D.ThietBi.get(idMay);
+  x = x || { SoLuong: 1, DonVi: 'CAI' };
+  var dm = function (nhom) { return dsDanhMuc(nhom, x[nhom === 'LOAI_LK' ? 'Loai' : 'DonVi']).map(function (o) { return [o.Ma, (o.TenVi || o.TenZh) + (o.TenZh && o.TenZh !== o.TenVi ? ' · ' + o.TenZh : '')]; }); };
+  var maCo = {};
+  D.LinhKien.forEach(function (o) { if (Number(o.Xoa) !== 1 && o.MaLK) maCo[o.MaLK] = 1; });
+  var anh = moi ? [] : anhCua('LinhKien', x);
+  var html =
+    (m ? '<div class="the" style="padding:10px 12px"><div><span class="ma">' + esc(m.Ma) + '</span> ' + tenMay(m) + '</div></div>' : '') +
+    oChon('Loai', 'lk.loai', dm('LOAI_LK'), x.Loai, { trong: 'chuaChon' }) +
+    oChu('TenVi', 'lk.tenVi', x.TenVi, { toiDa: 100 }) +
+    oChu('TenZh', 'lk.tenZh', x.TenZh, { toiDa: 100, ghi: 'tb.tenZhGhi' }) +
+    oChu('MaLK', 'lk.maLK', x.MaLK, { toiDa: 60, goiY: 'lk.maGoiY', danhSach: 'ds-ma-lk', ghi: 'lk.maGhi' }) +
+    '<datalist id="ds-ma-lk">' + Object.keys(maCo).sort().slice(0, 300).map(function (k) { return '<option value="' + esc(k) + '">'; }).join('') + '</datalist>' +
+    oChu('HangSX', 'tb.hangSX', x.HangSX, { toiDa: 60 }) +
+    '<div class="hai-cot can-duoi">' + oChu('SoLuong', 'lk.soLuong', x.SoLuong === '' || x.SoLuong == null ? '' : x.SoLuong, { soThuc: true, toiDa: 10 }) +
+    oChon('DonVi', 'lk.donVi', dm('DON_VI'), x.DonVi || '', { trong: 'chuaChon' }) + '</div>' +
+    oChu('ViTri', 'lk.viTri', x.ViTri, { toiDa: 100, goiY: 'lk.viTriGoiY' }) +
+    oChu('NhaCungCap', 'tb.nhaCungCap', x.NhaCungCap, { toiDa: 100 }) +
+    oVung('GhiChu', 'tb.ghiChu', x.GhiChu, { toiDa: 500, dong: 2 }) +
+    (moi ? '<p class="muc-ghi">' + t('lk.anhSauGhi') + '</p>'
+      : '<div class="o"><span class="o-nhan">' + t('lk.anh') + '</span><div class="luoi-anh" id="lk-anh"></div></div>') +
+    (!moi && lkDuocXoa(x) ? '<div class="hang-nut doc"><button type="button" class="nut nguy" data-k="xoa">' + ic('xoa', 'ic-nho') + t('lk.xoa') + '</button></div>' : '') +
+    (!moi ? '<p class="muc-ghi so gon">' + t('suaLuc') + ' ' + chuMayChu(x.CapNhat || x.TaoLuc) + (x.CapNhatBoi ? ' · ' + tenNguoiTheoId(x.CapNhatBoi) : '') + '</p>' : '');
+  moTrang({
+    tieuDe: moi ? 'lk.them' : [TX['lk.sua'][0] + (x.MaLK ? ' · ' + x.MaLK : ''), TX['lk.sua'][1]],
+    html: html,
+    luu: function (f) {
+      var p = { ID: moi ? taoId() : x.ID };
+      ['Loai', 'TenVi', 'TenZh', 'MaLK', 'HangSX', 'DonVi', 'ViTri', 'NhaCungCap', 'GhiChu'].forEach(function (k) {
+        p[k] = gtO(f, k).replace(k === 'GhiChu' ? /\r\n/g : /\s+/g, k === 'GhiChu' ? '\n' : ' ');
+      });
+      if (!p.TenVi && !p.TenZh && !p.Loai) { bao(t('lk.canTen'), 'loi'); f.elements.TenVi.focus(); return false; }
+      var sl = gtO(f, 'SoLuong'), n = docSo(sl);
+      if (sl !== '' && (!isFinite(n) || n < 0 || n > 100000)) { bao(t('lk.slSai'), 'loi'); f.elements.SoLuong.focus(); return false; }
+      p.SoLuong = sl === '' ? '' : n;
+      if (!p.TenVi && !p.TenZh) {   // chỉ chọn loại: tên theo loại (máy chủ cũng làm vậy)
+        var o = null;
+        D.DanhMuc.forEach(function (d) { if (!o && d.Nhom === 'LOAI_LK' && d.Ma === p.Loai) o = d; });
+        if (o) { p.TenVi = o.TenVi || ''; p.TenZh = o.TenZh || ''; }
+      }
+      if (moi) p.MaTB = idMay;
+      else if (!viecDangCho(x)) p.CapNhat = x.CapNhat;   // sửa tiếp khi lần trước chưa gửi: không báo xung đột với chính mình
+      var tam = Object.assign({}, x, p, { bang: 'LinhKien' });
+      delete tam._cho;
+      if (moi) { tam.Anh = []; tam.Xoa = 0; tam.TaoBoi = S.uid; tam.TaoLuc = gioLamNay(); }
+      return send('luuLinhKien', p, { dong: [tam] }).then(function () {
+        bao(t(S.coMang ? 'daLuu' : 'tb.daLuuCho'), 'tot');
+        veLaiLk();
+        return true;
+      });
+    },
+    moXong: function (f, dong) {
+      var loai = f.elements.Loai, loaiTruoc = loai.value;
+      loai.addEventListener('change', function () {   // chọn loại: điền tên theo loại (tên đang để trống hoặc đang là tên loại cũ)
+        var cu = null, moiO = null;
+        D.DanhMuc.forEach(function (o) { if (o.Nhom !== 'LOAI_LK' || Number(o.Xoa) === 1) return; if (o.Ma === loaiTruoc) cu = o; if (o.Ma === loai.value) moiO = o; });
+        [['TenVi', 'TenVi'], ['TenZh', 'TenZh']].forEach(function (k) {
+          var el = f.elements[k[0]], v = el.value.trim();
+          if (moiO && (!v || (cu && v === cu[k[1]]))) el.value = moiO[k[1]] || '';
+        });
+        loaiTruoc = loai.value;
+      });
+      var hopAnh = $('#lk-anh', f);
+      function veAnhLk() {
+        if (!hopAnh) return;
+        var cur = D.LinhKien.get(x.ID) || x;
+        anh = anhCua('LinhKien', cur);
+        hopAnh.innerHTML = anh.map(function (a, i) {
+          return '<button type="button" class="o-anh" data-i="' + i + '">' + theAnh(a, 300) + (a.cho ? '<span class="nhan-cho">' + t('choGui') + '</span>' : '') + '</button>';
+        }).join('') + (anh.length < TOI_DA_ANH_BAN_GHI ? '<label class="o-anh o-them"><input type="file" class="an-tep" accept="image/*" multiple id="lk-them-anh">' + ic('anh') + '<span>' + t('tb.themAnh') + '</span></label>' : '');
+        var inp = $('#lk-them-anh', hopAnh);
+        if (inp) inp.addEventListener('change', function (e) {
+          var fs = e.target.files;
+          if (!fs || !fs.length) return;
+          bao(t('anh.dangNen'));
+          themAnh('LinhKien', x.ID, fs, anh.length).then(function (n) {
+            if (n) bao(t(S.coMang ? 'anh.daThem' : 'anh.daThemCho', { n: n }), 'tot');
+            veAnhLk();
+          });
+        });
+      }
+      if (hopAnh) {
+        veAnhLk();
+        hopAnh.addEventListener('click', function (e) {
+          var b = e.target.closest('button.o-anh');
+          if (!b) return;
+          xemAnh(anh, Number(b.getAttribute('data-i')) || 0, { bo: xoaAnhLkFn(D.LinhKien.get(x.ID) || x) });
+        });
+      }
+      var bx = $('[data-k="xoa"]', f);
+      if (bx) bx.addEventListener('click', function () {
+        hoi({ tieuDe: 'lk.xoaHoi', noiDung: t('lk.xoaGhi', { ten: x.MaLK || x.TenVi || x.TenZh || '' }), dongY: 'lk.xoa', nguy: true }).then(function (co) {
+          if (!co) return;
+          var p = { ID: x.ID, xoa: true };
+          if (!viecDangCho(x)) p.CapNhat = x.CapNhat;
+          send('luuLinhKien', p, { dong: [{ bang: 'LinhKien', ID: x.ID, Xoa: 1 }] }).then(function () {
+            D.LinhKien.delete(x.ID);
+            dong();
+            bao(t('daXoa'), 'tot');
+            veLaiLk();
+          });
+        });
+      });
+    }
+  });
+}
+
+/* ---------- Chép danh sách linh kiện từ máy khác (máy cùng model) ---------- */
+HANH.chepLkTu = function (b) {
+  var dich = D.ThietBi.get(b.getAttribute('data-may'));
+  if (!dich) return;
+  var dem = {};
+  dsLk().forEach(function (x) { if (x.MaTB !== dich.ID) dem[x.MaTB] = (dem[x.MaTB] || 0) + 1; });
+  var nguon = Object.keys(dem).map(function (id) { return D.ThietBi.get(id); }).filter(function (m) { return m && Number(m.Xoa) !== 1; });
+  function diem(m) { return (dich.Model && m.Model === dich.Model ? 0 : 2) + (m.Nhom === dich.Nhom ? 0 : 1); }
+  nguon.sort(function (a, c) { return diem(a) - diem(c) || soSanhMay(a, c); });
+  if (!nguon.length) return bao(t('lk.chuaCoNguon'), 'loi');
+  var loc = { q: '' }, chon = '';
+  var tr = moTrang({
+    tieuDe: 'lk.chepTu', nhanLuu: 'lk.chep',
+    html: '<p class="muc-ghi">' + t('lk.chepTuGhi', { ma: dich.Ma }) + '</p>' +
+      '<div class="o-tim">' + ic('tim', 'ic-nho') + '<input class="o-nhap" id="clk-tim" type="search" placeholder="' + tp('tb.timGoiY') + '" autocomplete="off"></div>' +
+      '<div id="clk-ds"></div>',
+    luu: function () {
+      if (!chon) { bao(t('lk.chonMayNguon'), 'loi'); return false; }
+      var m = D.ThietBi.get(chon), co = {};
+      lkCuaMay(dich.ID).forEach(function (x) { co[khoaLkMay(dich.ID, x.MaLK, x.TenVi || x.TenZh, x.ViTri)] = 1; });
+      var ds = lkCuaMay(chon).filter(function (x) { return !co[khoaLkMay(dich.ID, x.MaLK, x.TenVi || x.TenZh, x.ViTri)]; });
+      var boQua = lkCuaMay(chon).length - ds.length;
+      if (!ds.length) { bao(t('lk.daCoHet'), 'loi'); return false; }
+      return hoi({ tieuDe: 'lk.chepHoi', noiDung: t('lk.chepHoiGhi', { n: ds.length, tu: m.Ma, den: dich.Ma }) + (boQua ? '<br>' + t('lk.boQuaTrung', { n: boQua }) : ''), dongY: 'lk.chep' }).then(function (dongY) {
+        if (!dongY) return false;
+        var p = Promise.resolve();
+        ds.forEach(function (x) {
+          p = p.then(function () {
+            var q = { ID: taoId(), MaTB: dich.ID };
+            ['Loai', 'TenVi', 'TenZh', 'MaLK', 'HangSX', 'SoLuong', 'DonVi', 'ViTri', 'NhaCungCap', 'GhiChu'].forEach(function (k) { q[k] = x[k] == null ? '' : x[k]; });
+            var tam = Object.assign({}, q, { bang: 'LinhKien', Anh: [], Xoa: 0, TaoBoi: S.uid, TaoLuc: gioLamNay() });
+            return send('luuLinhKien', q, { dong: [tam] });
+          });
+        });
+        return p.then(function () {
+          bao(t(S.coMang ? 'lk.daChep' : 'lk.daChepCho', { n: ds.length }), 'tot', 3500);
+          veLaiLk();
+          return true;
+        });
+      });
+    }
+  });
+  var f = tr.form;
+  function ve() {
+    var ds = nguon.filter(function (m) { return khopMay(m, loc.q); });
+    $('#clk-ds', f).innerHTML = ds.length ? '<div class="nhom">' + ds.slice(0, 100).map(function (m) {
+      var cung = dich.Model && m.Model === dich.Model;
+      return '<label class="dong dong-chon"><input type="radio" name="nguon" value="' + esc(m.ID) + '"' + (chon === m.ID ? ' checked' : '') + '>' +
+        '<span class="dong-chu"><span class="dong-chinh"><span class="ma">' + esc(m.Ma) + '</span> ' + tenMay(m) + '</span>' +
+        '<span class="dong-phu gon" style="display:block">' + [m.Model ? esc(m.Model) : '', phuMay(m)].filter(Boolean).join(' · ') + '</span>' +
+        '<span class="cac-hh"><span class="hh hh-chinh">' + t('lk.soLk', { n: dem[m.ID] }) + '</span>' + (cung ? '<span class="hh hh-tot">' + t('lk.cungModel') + '</span>' : '') + '</span></span></label>';
+    }).join('') + '</div>' : '<div class="the trong">' + t('khongThay') + '</div>';
+  }
+  $('#clk-tim', f).addEventListener('input', function (e) { loc.q = e.target.value; ve(); });
+  f.addEventListener('change', function (e) { if (e.target.name === 'nguon') chon = e.target.value; });
+  ve();
+};
+
+/* ---------- Màn Tra linh kiện · 备件查询 (cấp 1–3; dữ liệu trên máy nên tra được khi mất mạng) ---------- */
+var LOC_LK = { q: '', loai: '', nhom: '', kv: '', mo: {}, hien: 50 };
+man('linhkien', {
+  xong: true, cap: 3, cha: chaTheo('#/'), tieuDe: 'man.linhkien',
+  lamMoi: function () { veDsLk(); },
+  ve: function (el, ts) {
+    if (ts[0]) { LOC_LK.q = ts[0]; LOC_LK.loai = LOC_LK.nhom = LOC_LK.kv = ''; LOC_LK.mo = {}; LOC_LK.moMa = chuanMaLk(ts[0]); history.replaceState(null, '', '#/linhkien'); S.thamSo = ''; }
+    LOC_LK.hien = 50;
+    el.innerHTML =
+      '<div class="o-tim">' + ic('tim', 'ic-nho') + '<input class="o-nhap" id="tim-lk" type="search" enterkeyhint="search" placeholder="' + tp('lk.timGoiY') + '" value="' + esc(LOC_LK.q) + '" autocomplete="off" autocapitalize="characters"></div>' +
+      '<div class="hai-cot">' + chonLoc('lk-loai', 'LOAI_LK', LOC_LK.loai, 'lk.moiLoai') + chonLoc('lk-kv', 'KHU_VUC', LOC_LK.kv, 'tb.moiKhuVuc') + '</div>' +
+      chonLoc('lk-nhom', 'NHOM_TB', LOC_LK.nhom, 'lk.moiNhomMay') +
+      '<div id="ds-lk"></div>' +
+      '<button class="nut phu rong tang" data-act="xuatLk">' + ic('tai', 'ic-nho') + t('lk.xuatExcel') + '</button>' +
+      '<p class="muc-ghi">' + t('lk.traGhi') + '</p>';
+    $('#tim-lk', el).addEventListener('input', function (e) { LOC_LK.q = e.target.value; LOC_LK.hien = 50; LOC_LK.moMa = ''; veDsLk(); });
+    [['lk-loai', 'loai'], ['lk-kv', 'kv'], ['lk-nhom', 'nhom']].forEach(function (x) {
+      $('#' + x[0], el).addEventListener('change', function (e) { LOC_LK[x[1]] = e.target.value; e.target.classList.toggle('dang', !!e.target.value); LOC_LK.hien = 50; veDsLk(); });
+    });
+    veDsLk();
+  }
+});
+/** Tìm: mỗi từ (đã chuẩn hoá) phải có trong mã / tên / loại / hãng; hoặc cả chuỗi (bỏ khoảng trắng) nằm trong mã. */
+function khopLk(x, q, dm) {
+  q = String(q || '').trim();
+  if (!q) return true;
+  var ma = chuanMaLk(x.MaLK), goc = chuanMaLk([x.MaLK, x.TenVi, x.TenZh, x.HangSX, x.NhaCungCap, tenDmPhang(dm, 'LOAI_LK', x.Loai)].join('|'));
+  if (ma && ma.indexOf(chuanMaLk(q)) >= 0) return true;
+  return q.split(/\s+/).every(function (w) { w = chuanMaLk(w); return !w || goc.indexOf(w) >= 0; });
+}
+function locLk() {
+  var dm = bangDmPhang();
+  return dsLk(function (x) {
+    var m = D.ThietBi.get(x.MaTB);
+    if (!m || Number(m.Xoa) === 1) return false;
+    return (!LOC_LK.loai || x.Loai === LOC_LK.loai) && (!LOC_LK.nhom || m.Nhom === LOC_LK.nhom) && (!LOC_LK.kv || m.KhuVuc === LOC_LK.kv) && khopLk(x, LOC_LK.q, dm);
+  });
+}
+/** Gom theo mã (không có mã thì theo tên + loại). */
+function gomLk(ds) {
+  var m = new Map();
+  ds.forEach(function (x) {
+    var k = chuanMaLk(x.MaLK) || ('ten:' + chuanMaLk((x.TenVi || x.TenZh || '') + '|' + (x.Loai || '')));
+    if (!m.has(k)) m.set(k, { k: k, ma: x.MaLK || '', mau: x, ds: [], may: {}, tong: 0, coSl: false, dv: {}, hang: {}, ncc: {}, loai: {} });
+    var g = m.get(k);
+    g.ds.push(x);
+    g.may[x.MaTB] = 1;
+    if (x.SoLuong !== '' && x.SoLuong != null && isFinite(x.SoLuong)) { g.tong += Number(x.SoLuong); g.coSl = true; }
+    if (x.DonVi) g.dv[x.DonVi] = 1;
+    if (x.HangSX) g.hang[x.HangSX] = 1;
+    if (x.NhaCungCap) g.ncc[x.NhaCungCap] = 1;
+    if (x.Loai) g.loai[x.Loai] = 1;
+  });
+  return Array.from(m.values()).sort(function (a, b) {
+    return (a.ma ? 0 : 1) - (b.ma ? 0 : 1) || String(a.ma || a.mau.TenVi || '').localeCompare(String(b.ma || b.mau.TenVi || ''), 'vi', { numeric: true });
+  });
+}
+function tongLkChu(g) {
+  if (!g.coSl) return '';
+  var dv = Object.keys(g.dv);
+  return '<span class="so">' + so(Math.round(g.tong * 1000) / 1000) + '</span>' + (dv.length === 1 ? ' ' + tenDanhMuc('DON_VI', dv[0]) : '');
+}
+function veDsLk() {
+  var hop = $('#ds-lk');
+  if (!hop) return;
+  if (!D.LinhKien.size) {
+    hop.innerHTML = '<div class="the trong">' + ic('linhKien') + '<div class="dong-chinh">' + t('lk.chuaCo') + '</div><div class="dong-phu">' + t('lk.chuaCoGhi') + '</div></div>';
+    return;
+  }
+  var ds = locLk(), nhom = gomLk(ds), soMay = {};
+  ds.forEach(function (x) { soMay[x.MaTB] = 1; });
+  if (LOC_LK.moMa) nhom.forEach(function (g) { if (g.k === LOC_LK.moMa) LOC_LK.mo[g.k] = 1; });
+  if (!nhom.length) { hop.innerHTML = '<div class="the trong">' + ic('tim') + '<div>' + t('khongThay') + '</div></div>'; return; }
+  hop.innerHTML = '<p class="muc-ghi so">' + t('lk.ketQua', { n: so(nhom.length), m: so(Object.keys(soMay).length) }) + '</p><div class="nhom">' +
+    nhom.slice(0, LOC_LK.hien).map(function (g) {
+      var mo = !!LOC_LK.mo[g.k], x = g.mau, loai = Object.keys(g.loai), hang = Object.keys(g.hang);
+      var phu = [g.ma ? (loai.length > 1 ? tenLk(x) : loaiVaTenLk(x)) : (loai.length === 1 ? tenDanhMuc('LOAI_LK', loai[0]) : ''), hang.slice(0, 3).map(esc).join(', ')].filter(Boolean).join(' · ');
+      var h = '<button class="dong dong-lk-nhom' + (mo ? ' mo-ra' : '') + '" data-act="moNhomLk" data-k="' + esc(g.k) + '" aria-expanded="' + mo + '">' +
+        '<span class="dong-chu">' + (g.ma ? '<span class="ma-lk">' + esc(g.ma) + '</span>' : '<span class="dong-chinh" style="display:block">' + tenLk(x) + '</span>') +
+        (phu ? '<span class="dong-phu gon" style="display:block">' + phu + '</span>' : '') +
+        '<span class="cac-hh"><span class="hh hh-chinh">' + t('lk.soMay', { n: Object.keys(g.may).length }) + '</span>' + (tongLkChu(g) ? '<span class="hh">' + tongLkChu(g) + '</span>' : '') + '</span></span>' +
+        ic(mo ? 'len' : 'xuong', 'ic-nho') + '</button>';
+      if (mo) {
+        h += '<div class="lk-cac-may">' + g.ds.slice().sort(function (a, b) { return soSanhMay(D.ThietBi.get(a.MaTB), D.ThietBi.get(b.MaTB)); }).map(function (o) {
+          var m = D.ThietBi.get(o.MaTB);
+          return '<a class="dong" href="#/hoso/' + encodeURIComponent(m.ID) + '"><span class="dong-chu"><span class="dong-chinh"><span class="ma">' + esc(m.Ma) + '</span> ' + tenMay(m) + '</span>' +
+            '<span class="dong-phu gon" style="display:block">' + [m.KhuVuc ? tenDanhMuc('KHU_VUC', m.KhuVuc) : '', slLk(o), o.ViTri ? esc(o.ViTri) : '', !g.ma ? '' : (o.MaLK !== g.ma ? '<span class="so">' + esc(o.MaLK) + '</span>' : '')].filter(Boolean).join(' · ') + '</span></span>' +
+            ic('phai', 'ic-nho') + '</a>';
+        }).join('') + '</div>';
+      }
+      return h;
+    }).join('') + '</div>' +
+    (nhom.length > LOC_LK.hien ? '<button class="nut phu rong" data-act="xemThemLk">' + t('tb.xemThem') + ' <span class="so">(' + so(nhom.length - LOC_LK.hien) + ')</span></button>' : '');
+}
+HANH.moNhomLk = function (b) {
+  var k = b.getAttribute('data-k');
+  if (LOC_LK.mo[k]) delete LOC_LK.mo[k]; else LOC_LK.mo[k] = 1;
+  LOC_LK.moMa = '';
+  veDsLk();
+};
+HANH.xemThemLk = function () { LOC_LK.hien += 50; veDsLk(); };
+/** Xuất Excel theo bộ lọc đang chọn: trang Tổng hợp (theo mã) và trang Theo máy. */
+HANH.xuatLk = function () {
+  var ds = locLk();
+  if (!ds.length) return bao(t('khongThay'), 'loi');
+  var dm = bangDmPhang(), nhom = gomLk(ds);
+  var tong = [[tieuDeCot('lk.maLK'), tieuDeCot('lk.loai'), tieuDeCot('lk.tenVi'), tieuDeCot('lk.tenZh'), tieuDeCot('tb.hangSX'), tieuDeCot('tb.nhaCungCap'),
+    tieuDeCot('lk.tongSl'), tieuDeCot('lk.donVi'), tieuDeCot('lk.soMayCot'), tieuDeCot('lk.cacMay')]].concat(nhom.map(function (g) {
+    var x = g.mau, dv = Object.keys(g.dv);
+    var may = Object.keys(g.may).map(function (id) { return D.ThietBi.get(id); }).sort(soSanhMay).map(function (m) { return m.Ma; });
+    return [g.ma, Object.keys(g.loai).map(function (l) { return tenDmPhang(dm, 'LOAI_LK', l); }).join(', '), x.TenVi || '', x.TenZh || '',
+      Object.keys(g.hang).join(', '), Object.keys(g.ncc).join(', '), g.coSl ? Math.round(g.tong * 1000) / 1000 : '',
+      dv.map(function (d) { return tenDmPhang(dm, 'DON_VI', d); }).join(', '), may.length, may.join(', ')];
+  }));
+  var theoMay = [[tieuDeCot('tb.ma'), tieuDeCot('lk.tenMay'), tieuDeCot('tb.khuVuc'), tieuDeCot('lk.loai'), tieuDeCot('lk.tenVi'), tieuDeCot('lk.tenZh'), tieuDeCot('lk.maLK'),
+    tieuDeCot('tb.hangSX'), tieuDeCot('lk.soLuong'), tieuDeCot('lk.donVi'), tieuDeCot('lk.viTri'), tieuDeCot('tb.nhaCungCap'), tieuDeCot('tb.ghiChu')]].concat(
+    ds.slice().sort(function (a, b) { return soSanhMay(D.ThietBi.get(a.MaTB), D.ThietBi.get(b.MaTB)) || soSanhLk(a, b); }).map(function (x) {
+      var m = D.ThietBi.get(x.MaTB);
+      return [m.Ma, (m.TenVi || '') + (m.TenZh && m.TenZh !== m.TenVi ? ' · ' + m.TenZh : ''), tenDmPhang(dm, 'KHU_VUC', m.KhuVuc), tenDmPhang(dm, 'LOAI_LK', x.Loai),
+        x.TenVi || '', x.TenZh || '', x.MaLK || '', x.HangSX || '', x.SoLuong === '' || x.SoLuong == null ? '' : Number(x.SoLuong), tenDmPhang(dm, 'DON_VI', x.DonVi, true),
+        x.ViTri || '', x.NhaCungCap || '', x.GhiChu || ''];
+    }));
+  giaoTep(taoExcel([
+    { ten: 'Tổng hợp · 汇总', dong: tong, rong: [20, 16, 22, 16, 16, 20, 10, 10, 10, 40], dauDam: true },
+    { ten: 'Theo máy · 按设备', dong: theoMay, rong: [14, 30, 14, 14, 22, 16, 20, 14, 10, 10, 20, 20, 30], dauDam: true }
+  ]), 'linh-kien-' + ngayTep() + '.xlsx', 'lk.xuatGhi');
 };
 
 /* =====================================================================
@@ -3950,6 +4893,8 @@ HANH.taiDsMay = function () {
  *   Xác nhận: quét tem (bắt buộc theo kế hoạch), hạng mục Đạt/Lỗi hoặc số đo, ghi chú, ảnh — lưu được khi mất mạng
  *   Kế hoạch (cấp 1–2, cần mạng): thêm cho một hoặc nhiều máy, chu kỳ, hạng mục; chi tiết kế hoạch; chi tiết lần làm, huỷ
  * KeHoachBD.MaTB, BaoDuong.MaTB là ID máy (ThietBi.ID).
+ * Phiên 4b: người được giao = PhuTrach của kế hoạch, trống thì người kiểm tra của máy (nhiều người hoặc Tất cả);
+ *   kỹ thuật viên mặc định xem "Của tôi"; làm việc không phải của mình thì hỏi "Làm thay?" (máy chủ ghi LamThay).
  * ===================================================================== */
 var DV_CK = ['NGAY', 'TUAN', 'THANG', 'NAM'];
 var NHAC_MD = { NGAY: 0, TUAN: 1, THANG: 3, NAM: 14 };
@@ -4007,8 +4952,15 @@ function dsKh(loc) {
 function tenKh(kh) { return tt(kh.NoiDungVi, kh.NoiDungZh); }
 function tenKhPhang(kh) { return (kh.NoiDungVi || kh.NoiDungZh || '') + (kh.NoiDungZh && kh.NoiDungZh !== kh.NoiDungVi ? ' · ' + kh.NoiDungZh : ''); }
 function chuKyChu(kh) { return t('bdg.moi.' + (kh.DonViChuKy || 'THANG'), { n: kh.ChuKy || 1 }); }
-function nguoiKh(kh) { var m = mayCuaKh(kh); return kh.PhuTrach || (m && m.PhuTrach) || ''; }
-function khCuaToi(kh) { return nguoiKh(kh) === S.uid; }
+/** Người được giao: { ds: [UID], theo: 'KH' (phụ trách riêng của kế hoạch) | 'MAY' (người kiểm tra của máy) }. ds rỗng = Tất cả. */
+function giaoKh(kh) {
+  if (kh.PhuTrach && nguoiConDung(kh.PhuTrach)) return { ds: [kh.PhuTrach], theo: 'KH' };
+  return { ds: dsKiemTra(mayCuaKh(kh)), theo: 'MAY' };
+}
+function nguoiKh(kh) { return giaoKh(kh).ds; }
+/** Việc của tôi: kế hoạch giao cho mình, hoặc máy giao cho mình / để Tất cả. */
+function khCuaToi(kh) { var ds = nguoiKh(kh); return !ds.length || ds.indexOf(S.uid) >= 0; }
+function laKtv() { return !!S.nd && Number(S.nd.Cap) === 3; }
 /** Trạng thái hạn: { loai: QUA | NAY | SAP | XA, n: số ngày còn lại (âm = trễ) }. */
 function hanKh(kh) {
   var n = soNgayGiua(homNay(), kh.HanKeTiep);
@@ -4066,7 +5018,7 @@ function demViecBd(chiToi) {
 }
 function canhBaoBD() {
   if (!dungDuoc('baoduong') || !S.dongBoLuc) return '';
-  var d = demViecBd();
+  var d = demViecBd(laKtv());   // kỹ thuật viên: việc của mình
   if (!d.qua && !d.nay) return '';
   var qua = d.qua > 0;
   return '<a class="the canh-bao' + (qua ? '' : ' vang') + '" href="#/baoduong"><span class="ic-dau">' + ic('baoduong') + '</span><span class="dong-chu"><span class="dong-chinh">' +
@@ -4074,17 +5026,18 @@ function canhBaoBD() {
     (qua && d.nay ? '<span class="dong-phu gon" style="display:block">' + t('bdg.vaHomNay', { n: d.nay }) + '</span>' : '') + '</span>' + ic('phai', 'ic-nho') + '</a>';
 }
 function soViecBdChu() {
-  var d = demViecBd();
+  var d = demViecBd(laKtv());
   return d.qua || d.nay ? t('bdg.soViec', { q: d.qua, h: d.nay }) : t('bdg.khongDenHan');
 }
 
 /* ---------- Lịch bảo dưỡng ---------- */
-var LOC_BD = { xem: 'canlam', toi: false, kv: '', thang: '', ngay: '', nam: 0, hien: 50 };
+var LOC_BD = { xem: 'canlam', toi: false, kv: '', thang: '', ngay: '', nam: 0, hien: 50, uid: '' };
 var XEM_BD = ['canlam', 'thang', 'nam', 'dalam'];
 man('baoduong', {
   xong: true, cap: 3, tab: 'baoduong', tieuDe: 'man.lichbd',
   lamMoi: function () { veNoiDungBd(); },
   ve: function (el, ts) {
+    if (LOC_BD.uid !== S.uid) { LOC_BD.uid = S.uid; LOC_BD.toi = laKtv(); }   // kỹ thuật viên mặc định "Của tôi"
     if (XEM_BD.indexOf(ts[0]) >= 0) LOC_BD.xem = ts[0];
     if (!LOC_BD.thang) LOC_BD.thang = homNay().slice(0, 7);
     if (!LOC_BD.nam) LOC_BD.nam = +homNay().slice(0, 4);
@@ -4118,7 +5071,8 @@ function dongKh(kh, tc) {
   var m = mayCuaKh(kh), h = hanKh(kh), hh = [hhHan(kh)];
   if (Number(kh.BatBuocQuet) === 1) hh.push('<span class="hh">' + ic('qr', 'ic-nho') + t('bdg.canQuet') + '</span>');
   if (kh._cho) hh.push(hhCho(kh));
-  var phu = [m ? tenMay(m) : '', m && m.KhuVuc ? tenDanhMuc('KHU_VUC', m.KhuVuc) : '', tc.nguoi && nguoiKh(kh) ? tenNguoiTheoId(nguoiKh(kh)) : ''].filter(Boolean).join(' · ');
+  var ng = tc.nguoi ? nguoiKh(kh) : [];
+  var phu = [m ? tenMay(m) : '', m && m.KhuVuc ? tenDanhMuc('KHU_VUC', m.KhuVuc) : '', ng.length ? tenDsNguoiNgan(ng) : ''].filter(Boolean).join(' · ');
   return '<a class="dong dong-bd" href="' + (tc.href || '#/xacnhan/') + encodeURIComponent(kh.ID) + '"><span class="vach vach-' + (Number(kh.HoatDong) === 1 ? h.loai : 'XA') + '"></span>' +
     '<span class="dong-chu"><span class="dong-chinh">' + (m ? '<span class="ma">' + esc(m.Ma) + '</span> ' : '') + tenKh(kh) + '</span>' +
     (phu ? '<span class="dong-phu gon" style="display:block">' + phu + '</span>' : '') +
@@ -4252,6 +5206,7 @@ HANH.bdXemThem = function () { LOC_BD.hien += 50; veNoiDungBd(); };
 function dongLan(x, tc) {
   tc = tc || {};
   var m = D.ThietBi.get(x.MaTB), hh = [hhKetQua(x)];
+  if (Number(x.LamThay) === 1) hh.push('<span class="hh hh-canh">' + t('bdg.lamThay') + '</span>');
   if (Number(x.QuetQR) === 1) hh.push('<span class="hh">' + ic('qr', 'ic-nho') + t('bdg.daQuetNgan') + '</span>');
   if (x._cho) hh.push(hhCho(x));
   var n = (Array.isArray(x.Anh) ? x.Anh.length : 0);
@@ -4313,6 +5268,8 @@ man('xacnhan', {
       '<div class="may-dau">' + (m ? '<a class="ma ma-lon" href="#/hoso/' + encodeURIComponent(m.ID) + '">' + esc(m.Ma) + '</a>' : '') + hhHan(kh) + '</div>' +
       '<h1 class="may-ten">' + tenKh(kh) + '</h1>' +
       '<div class="dong-phu gon">' + [m ? tenMay(m) : '', chuKyChu(kh), kh.LanCuoi ? t('bdg.lanCuoiNgan', { ngay: ngayNgan(kh.LanCuoi) }) : ''].filter(Boolean).join(' · ') + '</div>' +
+      '<div class="dong-phu gon">' + ic('nguoiKT', 'ic-nho') + ' ' + (nguoiKh(kh).length ? tenDsNguoiNgan(nguoiKh(kh)) : t('kt.tatCa')) +
+      (!khCuaToi(kh) ? ' <span class="hh hh-canh">' + t('bdg.lamThay') + '</span>' : '') + '</div>' +
       '<a class="lien-ket-nho" href="#/khbd/' + encodeURIComponent(kh.ID) + '">' + t('bdg.xemKh') + ' ' + ic('phai', 'ic-nho') + '</a>' +
       '</div>' +
       '<section class="muc"><h2 class="muc-tieu-de">' + t('bdg.quetTem') + '</h2><div id="xn-quet"></div></section>' +
@@ -4472,6 +5429,14 @@ HANH.xnGui = function (b) {
   if (!c || b.disabled) return;
   var kh = c.kh, x = c.x, ly = lyDoChuaXn(kh, x);
   if (ly) { bao(ly, 'loi'); return; }
+  if (laKtv() && !khCuaToi(kh)) {   // việc không giao cho mình: hỏi trước, máy chủ ghi LamThay
+    hoi({ tieuDe: 'bdg.lamThayHoi', noiDung: t('bdg.lamThayGhi', { ten: nguoiKh(kh).map(function (id) { var u = D.NguoiDung.get(id); return u ? u.Ten : id; }).join(', ') }), dongY: 'bdg.lamThayDongY' })
+      .then(function (co) { if (co) guiXn(b, kh, x); });
+    return;
+  }
+  guiXn(b, kh, x);
+};
+function guiXn(b, kh, x) {
   b.disabled = true;
   var hm = (kh.HangMuc || []).map(function (o, i) {
     var r = { vi: o.vi || '', zh: o.zh || '', kieu: o.kieu || 'OK_NG' };
@@ -4487,7 +5452,8 @@ HANH.xnGui = function (b) {
   var dong = [{
     bang: 'BaoDuong', ID: x.id, IDKeHoach: kh.ID, MaTB: kh.MaTB, NgayLam: luc, HanLucDo: kh.HanKeTiep, NguoiLam: S.uid, QuetQR: x.quet ? 1 : 0,
     KetQua: hm.some(function (o) { return o.kq === 'NG'; }) ? 'LOI' : 'DAT', ChiTiet: { nd: [kh.NoiDungVi || '', kh.NoiDungZh || ''], hm: hm },
-    GhiChuVi: coChuHan(gc) ? '' : gc, GhiChuZh: coChuHan(gc) ? gc : '', Anh: [], TrangThai: 'OK', Xoa: 0, TaoBoi: S.uid, DichMay: []
+    GhiChuVi: coChuHan(gc) ? '' : gc, GhiChuZh: coChuHan(gc) ? gc : '', Anh: [], TrangThai: 'OK', Xoa: 0, TaoBoi: S.uid, DichMay: [],
+    LamThay: nguoiKh(kh).length && nguoiKh(kh).indexOf(S.uid) < 0 ? 1 : 0
   }];
   if (!kh.LanCuoi || ngay >= String(kh.LanCuoi).slice(0, 10)) dong.push({ bang: 'KeHoachBD', ID: kh.ID, LanCuoi: ngay, HanKeTiep: congChuKy(ngay, kh.ChuKy, kh.DonViChuKy) });
   var anh = x.anh.slice();
@@ -4499,7 +5465,7 @@ HANH.xnGui = function (b) {
     bao(t(S.coMang ? 'bdg.daXacNhan' : 'bdg.daXacNhanCho'), 'tot', 3500);
     veLaiTu('xacnhan', kh.ID, 'baoduong');
   }, function (e) { b.disabled = false; baoLoi(e); });
-};
+}
 
 /* ---------- Quét tem trong màn xác nhận (camera; chỉ nhận tem đúng máy) ---------- */
 function moQuetTem(may) {
@@ -4597,7 +5563,7 @@ man('khbd', {
       ['bdg.hanTiep', '<span class="so">' + ngayChu(kh.HanKeTiep) + '</span> ' + hhHan(kh)],
       ['bdg.lanCuoi', kh.LanCuoi ? '<span class="so">' + ngayChu(kh.LanCuoi) + '</span>' : t('bdg.chuaLamLanNao')],
       ['bdg.nhacTruoc', t('bdg.soNgay', { n: kh.NhacTruoc || 0 })],
-      ['bdg.phuTrach', nguoiKh(kh) ? tenNguoiTheoId(nguoiKh(kh)) + (!kh.PhuTrach ? ' <span class="dong-phu inline">' + t('bdg.theoMay') + '</span>' : '') : '—'],
+      ['bdg.phuTrach', (function () { var g = giaoKh(kh); return hhDsNguoi(g.ds) + (g.theo === 'MAY' ? '<div class="dong-phu">' + t('bdg.theoMay') + '</div>' : ''); })()],
       ['bdg.quetTem', t(Number(kh.BatBuocQuet) === 1 ? 'bdg.batBuoc' : 'bdg.khongBatBuocNgan')],
       ['bdg.trangThai', t(Number(kh.HoatDong) === 1 ? 'bdg.dangDung' : 'bdg.tamDung')]
     ];
@@ -4646,7 +5612,8 @@ man('lanbd', {
       '<div class="may-dau">' + (m ? '<a class="ma ma-lon" href="#/hoso/' + encodeURIComponent(m.ID) + '">' + esc(m.Ma) + '</a>' : '') + '<span class="cac-hh" style="margin:0">' + hhKetQua(x) + hhCho(x) + '</span></div>' +
       '<h1 class="may-ten">' + tenKhCuaLan(x) + '</h1>' +
       '<div class="dong-phu gon so">' + chuMayChu(x.NgayLam) + ' · ' + tenNguoiTheoId(x.NguoiLam) + '</div>' +
-      '<div class="cac-hh">' + (Number(x.QuetQR) === 1 ? '<span class="hh hh-tot">' + ic('qr', 'ic-nho') + t('bdg.daQuetNgan') + '</span>' : '<span class="hh">' + t('bdg.khongQuet') + '</span>') +
+      '<div class="cac-hh">' + (Number(x.LamThay) === 1 ? '<span class="hh hh-canh">' + t('bdg.lamThay') + '</span>' : '') +
+      (Number(x.QuetQR) === 1 ? '<span class="hh hh-tot">' + ic('qr', 'ic-nho') + t('bdg.daQuetNgan') + '</span>' : '<span class="hh">' + t('bdg.khongQuet') + '</span>') +
       (isFinite(tre) ? (tre > 0 ? '<span class="hh hh-canh">' + t('bdg.lamTre', { n: tre }) + '</span>' : '<span class="hh hh-tot">' + t('bdg.dungHan') + '</span>') : '') + '</div>' +
       (D.KeHoachBD.get(x.IDKeHoach) && Number(D.KeHoachBD.get(x.IDKeHoach).Xoa) !== 1 ? '<a class="lien-ket-nho" href="#/khbd/' + encodeURIComponent(x.IDKeHoach) + '">' + t('bdg.xemKh') + ' ' + ic('phai', 'ic-nho') + '</a>' : '') +
       (nut.length ? '<div class="hang-nut">' + nut.join('') + '</div>' : '') + '</div>' +
@@ -5008,7 +5975,7 @@ function bdHoSo(m) {
  * quantri.js — Quản trị · 系统管理: người dùng, danh mục song ngữ, cài đặt, hệ thống & sao lưu, nhật ký.
  * Mọi việc ở đây cần mạng (gọi thẳng, có opId chống trùng).
  * ===================================================================== */
-var NHOM_DM = ['NHOM_TB', 'KHU_VUC', 'BO_PHAN', 'LOAI_LOI', 'NGUYEN_NHAN', 'DON_VI', 'THUAT_NGU'];
+var NHOM_DM = ['NHOM_TB', 'KHU_VUC', 'BO_PHAN', 'LOAI_LOI', 'NGUYEN_NHAN', 'DON_VI', 'LOAI_LK', 'THUAT_NGU'];
 NHAN_VIEC.luuDanhMuc = 'viec.luuDanhMuc';
 NHAN_VIEC.luuNguoiDung = 'viec.luuNguoiDung';
 
