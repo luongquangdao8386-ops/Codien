@@ -1,0 +1,17 @@
+{
+  "name": "Cơ Điện · 机电",
+  "short_name": "Cơ Điện",
+  "description": "Quản lý cơ điện: thiết bị, sửa chữa, bảo dưỡng, số điện · 机电管理",
+  "lang": "vi",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0e5a6e",
+  "theme_color": "#0e5a6e",
+  "icons": [
+    { "src": "icon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
